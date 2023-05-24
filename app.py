@@ -1,5 +1,6 @@
 import streamlit as st
 from deta import Deta
+import pandas as pd
 
 
 # Connect to Deta Base with your Data Key
