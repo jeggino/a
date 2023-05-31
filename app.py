@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import pydeck as pdk
 import numpy as np
-import geopandas
+import geopandas as gdf
 import fiona
 
 # -------------------------------------------------------
@@ -16,7 +16,7 @@ st.set_page_config(
 # -------------------------------------------------------
 @st.cache_data() 
 def get_data():
-    df_raw =  geopandas.read_file("dataframe.geojson")
+    df_raw =  gdf.read_file("dataframe.geojson")
     return df_raw
 
 
