@@ -22,10 +22,10 @@ def get_data():
 
 gdf = get_data()
 
-st.text(gdf.info())
-
 gdf_scatter = gdf.dissolve(by='subId' ,aggfunc=np.size)[["comName","geometry"]].reset_index()
+df = gdf_scatter.drop("geometry",axis=1)
 
+st.dataframe(df)
 # Define a layer to display on a map
 
 GridLayer = pdk.Layer(
