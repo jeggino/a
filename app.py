@@ -22,7 +22,7 @@ def get_data():
 
 gdf = get_data()
 
-st.write(gdf.info())
+st.write(gdf.text())
 
 gdf_scatter = gdf.dissolve(by='subId' ,aggfunc=np.size)[["comName","geometry"]].reset_index()
 
