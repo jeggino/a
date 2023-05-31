@@ -20,7 +20,6 @@ def get_data():
     return df_raw
 
 
-# gdf = geopandas.read_file("https://github.com/jeggino/eBird/blob/d9efbc6fc684675e3f5eb56fb84e017f0319d705/dataframe.geojson")
 gdf = get_data()
 
 
@@ -28,7 +27,7 @@ gdf_scatter = gdf.dissolve(by='subId' ,aggfunc=np.size)[["comName","geometry"]].
 
 # Define a layer to display on a map
 
-layer = pdk.Layer(
+GridLayer = pdk.Layer(
     "GridLayer", gdf, pickable=True, extruded=True, 
     cell_size=50000, elevation_scale=20, get_position="geometry.coordinates",
 )
@@ -54,7 +53,7 @@ tooltip_dictionary = {'ScatterplotLayer': {"text": "Name location: {subId} \nCou
                       'IconLayer': {"text": "Name: {sciName} \nDatet: {date}"} }
     
 # Render
-r = pdk.Deck(layers=[layer], map_style=pdk.map_styles.LIGHT, 
+r = pdk.Deck(layers=[ScatterplotLayer], map_style=pdk.map_styles.LIGHT, 
 #              tooltip=tooltip_dictionary["ScatterplotLayer"]
             )
 r
