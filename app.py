@@ -16,7 +16,7 @@ st.set_page_config(
 # -------------------------------------------------------
 @st.cache_data() 
 def get_data():
-    df_raw =  gpd.read_file("dataframe.geojson")
+    df_raw =  geopandas.read_file("dataframe.geojson")
     return df_raw
 
 
