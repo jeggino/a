@@ -59,5 +59,5 @@ tooltip_dictionary = {'ScatterplotLayer': {"text": "Name location: {subId} \nCou
     
 # Render
 r = pdk.Deck(layers=[ScatterplotLayer], map_style=pdk.map_styles.LIGHT, tooltip=tooltip_dictionary["ScatterplotLayer"],)
-
-st.pydeck_chart(pydeck_obj=r, use_container_width=True)
+r
+# st.pydeck_chart(pydeck_obj=r, use_container_width=True)
