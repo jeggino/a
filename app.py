@@ -30,7 +30,7 @@ gdf_scatter = gdf.dissolve(by='subId' ,aggfunc=np.size)[["comName","geometry"]].
 
 layer = pdk.Layer(
     "GridLayer", gdf, pickable=True, extruded=True, 
-    cell_size=5000, elevation_scale=20, get_position="geometry.coordinates",
+    cell_size=50000, elevation_scale=20, get_position="geometry.coordinates",
 )
 
 ScatterplotLayer = pdk.Layer(
