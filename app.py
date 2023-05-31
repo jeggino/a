@@ -5,8 +5,8 @@ import numpy as np
 import geopandas
 
 
-gdf = geopandas.read_file("https://github.com/jeggino/eBird/blob/d9efbc6fc684675e3f5eb56fb84e017f0319d705/dataframe.geojson")
-
+# gdf = geopandas.read_file("https://github.com/jeggino/eBird/blob/d9efbc6fc684675e3f5eb56fb84e017f0319d705/dataframe.geojson")
+gdf = geopandas.GeoDataFrame.from_features"https://github.com/jeggino/eBird/blob/d9efbc6fc684675e3f5eb56fb84e017f0319d705/dataframe.geojson")
 
 
 # gdf = geopandas.GeoDataFrame(
