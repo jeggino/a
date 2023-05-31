@@ -3,10 +3,25 @@ import pandas as pd
 import pydeck as pdk
 import numpy as np
 import geopandas
+import fiona
+
+# -------------------------------------------------------
+st.set_page_config(
+    page_title="eBird",
+    page_icon="🪶",
+    layout="wide",
+)
+
+
+# -------------------------------------------------------
+@st.cache_data() 
+def get_data():
+    df_raw =  gpd.read_file("dataframe.geojson")
+    return df_raw
 
 
 # gdf = geopandas.read_file("https://github.com/jeggino/eBird/blob/d9efbc6fc684675e3f5eb56fb84e017f0319d705/dataframe.geojson")
-gdf = geopandas.GeoDataFrame.from_features("https://github.com/jeggino/eBird/blob/d9efbc6fc684675e3f5eb56fb84e017f0319d705/dataframe.geojson").set_geometry('geometry')
+gdf = get_data()
 
 
 # gdf = geopandas.GeoDataFrame(
