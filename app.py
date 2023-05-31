@@ -24,10 +24,6 @@ def get_data():
 gdf = get_data()
 
 
-# gdf = geopandas.GeoDataFrame(
-#     df, geometry=geopandas.points_from_xy(df.lng, df.lat), crs="EPSG:4326"
-# )
-
 gdf_scatter = gdf.dissolve(by='subId' ,aggfunc=np.size)[["comName","geometry"]].reset_index()
 
 # Define a layer to display on a map
@@ -58,6 +54,8 @@ tooltip_dictionary = {'ScatterplotLayer': {"text": "Name location: {subId} \nCou
                       'IconLayer': {"text": "Name: {sciName} \nDatet: {date}"} }
     
 # Render
-r = pdk.Deck(layers=[ScatterplotLayer], map_style=pdk.map_styles.LIGHT, tooltip=tooltip_dictionary["ScatterplotLayer"],)
+r = pdk.Deck(layers=[layer], map_style=pdk.map_styles.LIGHT, 
+#              tooltip=tooltip_dictionary["ScatterplotLayer"]
+            )
 r
 # st.pydeck_chart(pydeck_obj=r, use_container_width=True)
