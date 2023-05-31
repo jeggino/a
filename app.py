@@ -5,13 +5,13 @@ import numpy as np
 import geopandas
 
 
-df = pd.read_file("https://github.com/jeggino/eBird/blob/bd7982301ec646c4b2a0288560370db39d121f01/df_raw.csv")
+gdf = geopandas.read_file("https://github.com/jeggino/eBird/blob/d9efbc6fc684675e3f5eb56fb84e017f0319d705/dataframe.geojson")
 
 
 
-gdf = geopandas.GeoDataFrame(
-    df, geometry=geopandas.points_from_xy(df.lng, df.lat), crs="EPSG:4326"
-)
+# gdf = geopandas.GeoDataFrame(
+#     df, geometry=geopandas.points_from_xy(df.lng, df.lat), crs="EPSG:4326"
+# )
 
 gdf_scatter = gdf.dissolve(by='subId' ,aggfunc=np.size)[["comName","geometry"]].reset_index()
 
