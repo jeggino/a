@@ -5,7 +5,7 @@ import numpy as np
 import geopandas
 
 
-df = pd.read_csv("https://github.com/jeggino/eBird/blob/bd7982301ec646c4b2a0288560370db39d121f01/df_raw.csv")
+df = pd.read_file("https://github.com/jeggino/eBird/blob/bd7982301ec646c4b2a0288560370db39d121f01/df_raw.csv")
 
 
 
