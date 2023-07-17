@@ -1,4 +1,3 @@
 streamlit
 pandas
-geopandas
-fiona
+SQLAlchemy==1.4.0
