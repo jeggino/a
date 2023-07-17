@@ -2,7 +2,9 @@
 
 import streamlit as st
 
-conn = st.experimental_connection("local", "sql")
-df = conn.query("select * from df")
+# Create the SQL connection to pets_db as specified in your secrets file.
+conn = st.experimental_connection('pets_db', type='sql')
 
-df
+# Query and display the data you inserted
+pet_owners = conn.query('select * from df')
+st.dataframe(pet_owners)
