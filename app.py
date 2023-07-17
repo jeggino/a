@@ -2,7 +2,7 @@
 
 import streamlit as st
 
-conn = st.experimental_connection("env:DB_CONN", "sql")
+conn = st.experimental_connection("local", "sql")
 df = conn.query("select * from df")
 
 df
