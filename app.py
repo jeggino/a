@@ -20,3 +20,6 @@ with conn.session as s:
 # Query and display the data you inserted
 pet_owners = conn.query('select * from Tommaso')
 st.dataframe(pet_owners)
+df_ebird = pd.read_csv("df_raw.csv")
+st.dataframe(df_ebird)
+
