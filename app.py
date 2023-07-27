@@ -7,16 +7,16 @@ conn = st.experimental_connection('pets_db', type='sql')
 
 # Insert some data with conn.session.
 with conn.session as s:
-    s.execute('CREATE TABLE IF NOT EXISTS rodrigo (person TEXT, pet TEXT);')
-    s.execute('DELETE FROM rodrigo;')
+    s.execute('CREATE TABLE IF NOT EXISTS Tommaso (person TEXT, pet TEXT);')
+    s.execute('DELETE FROM Tommaso;')
     pet_owners = {'pasquale': 'pane', 'barbara': 'cat', 'alex': 'puppy'}
     for k in pet_owners:
         s.execute(
-            'INSERT INTO rodrigo (person, pet) VALUES (:owner, :pet);',
+            'INSERT INTO Tommaso (person, pet) VALUES (:owner, :pet);',
             params=dict(owner=k, pet=pet_owners[k]),
         )
     s.commit()
 
 # Query and display the data you inserted
-pet_owners = conn.query('select * from rodrigo')
+pet_owners = conn.query('select * from Tommaso')
 st.dataframe(pet_owners)
