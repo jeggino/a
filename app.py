@@ -23,7 +23,7 @@ import pandas as pd
 # st.dataframe(pet_owners)
 
 conn = st.experimental_connection(
-    # "local_db",
+    "local_db",
     type="sql",
     url="mysql://root:Platinum79@localhost:3306/ebird"
 )
