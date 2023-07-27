@@ -23,5 +23,5 @@ pet_owners = conn.query('select * from Tommaso')
 st.dataframe(pet_owners)
 df_ebird = pd.read_csv("df_raw (2).csv")
 st.dataframe(df_ebird)
-st.map(df_ebird.iloc[:30], size=20)
+st.map(df_ebird.iloc[:30], size=20,latitude="lat", longitude="lng")
 
