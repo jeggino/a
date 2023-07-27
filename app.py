@@ -8,7 +8,7 @@ conn = st.experimental_connection('pets_db', type='sql')
 # Insert some data with conn.session.
 with conn.session as s:
     s.execute('CREATE TABLE IF NOT EXISTS Tommaso (person TEXT, pet TEXT);')
-    s.execute('DELETE FROM Tommaso;')
+    s.execute('DELETE * FROM Tommaso;')
     pet_owners = {'filippo': 'insalata', 'barbara': 'cat', 'alex': 'puppy'}
     for k in pet_owners:
         s.execute(
