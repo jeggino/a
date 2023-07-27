@@ -12,8 +12,9 @@ with conn.session as s:
     pet_owners = {'pasquale': 'pane', 'barbara': 'cat', 'alex': 'puppy'}
     for k in pet_owners:
         s.execute(
-            'INSERT INTO rodrigo (person, pet) VALUES (:owner, :pet);',
             params=dict(owner=k, pet=pet_owners[k])
+            'INSERT INTO rodrigo (person, pet) VALUES (:owner, :pet);',
+            
         )
     s.commit()
 
