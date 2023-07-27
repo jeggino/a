@@ -22,14 +22,18 @@ import pandas as pd
 # pet_owners = conn.query('select * from Tommaso')
 # st.dataframe(pet_owners)
 
-conn = st.experimental_connection(
-    "local_db",
-    type="sql",
-    url="mysql://root:Platinum79@localhost:3306/ebird"
-)
-df_ebird = conn.query("select * from df")
-st.dataframe(df_ebird)
-# df_ebird = pd.read_csv("df_raw (2).csv")
+conn = st.experimental_connection("sql")
+df = conn.query("select * from pet_owners")
+st.dataframe(df)
+
+# conn = st.experimental_connection(
+#     "local_db",
+#     type="sql",
+#     url="mysql://root:Platinum79@localhost:3306/ebird"
+# )
+# df_ebird = conn.query("select * from df")
 # st.dataframe(df_ebird)
-st.map(df_ebird.iloc[:30], size=20,latitude="lat", longitude="lng")
+# # df_ebird = pd.read_csv("df_raw (2).csv")
+# # st.dataframe(df_ebird)
+# st.map(df_ebird.iloc[:30], size=20,latitude="lat", longitude="lng")
 
