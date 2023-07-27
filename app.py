@@ -22,7 +22,11 @@ import pandas as pd
 # pet_owners = conn.query('select * from Tommaso')
 # st.dataframe(pet_owners)
 
-conn = st.experimental_connection("mydb", type="sql", autocommit=True)
+conn = st.experimental_connection(
+    "local_db",
+    type="sql",
+    url="mysql+pymysql://{user}:{pw}@localhost/{db}".format(user="root",pw="Platinum79",db="ebird")
+)
 
 # df = conn.query("select * from pet_owners")
 # st.dataframe(df)
