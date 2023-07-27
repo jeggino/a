@@ -9,12 +9,12 @@ conn = st.experimental_connection('pets_db', type='sql')
 with conn.session as s:
     s.execute('CREATE TABLE IF NOT EXISTS Tommaso (person TEXT, pet TEXT);')
     s.execute('DELETE FROM Tommaso;')
-    pet_owners = {'filippo': 'insalata', 'barbara': 'cat', 'alex': 'puppy'}
-    for k in pet_owners:
-        s.execute(
-            'INSERT INTO Tommaso (person, pet) VALUES (:owner, :pet);',
-            params=dict(owner=k, pet=pet_owners[k]),
-        )
+    # pet_owners = {'filippo': 'insalata', 'barbara': 'cat', 'alex': 'puppy'}
+    # for k in pet_owners:
+    #     s.execute(
+    #         'INSERT INTO Tommaso (person, pet) VALUES (:owner, :pet);',
+    #         params=dict(owner=k, pet=pet_owners[k]),
+    #     )
     s.commit()
 
 # Query and display the data you inserted
