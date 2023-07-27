@@ -9,7 +9,7 @@ conn = st.experimental_connection('pets_db', type='sql')
 with conn.session as s:
     s.execute('CREATE TABLE IF NOT EXISTS Tommaso (person TEXT, pet TEXT);')
     s.execute('DELETE FROM Tommaso;')
-    pet_owners = {'pasquale': 'pane', 'barbara': 'cat', 'alex': 'puppy'}
+    pet_owners = {'pasquale': 'insalata', 'barbara': 'cat', 'alex': 'puppy'}
     for k in pet_owners:
         s.execute(
             'INSERT INTO Tommaso (person, pet) VALUES (:owner, :pet);',
