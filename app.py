@@ -11,9 +11,11 @@ engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}"
                                pw="Platinum79",
                                db="ebird"))
 
-# Query and display the data you inserted
-pet_owners = engine.query('select * from df')
-st.dataframe(pet_owners)
+q1 = 'SELECT * FROM df'
 
-# df_old = pd.read_sql_query("SELECT * FROM df",con=engine)[COLUMNS]
+@st.cache
+def read_df1():
+  df1 = pd.read_sql_query(q1, get_connection())
+  return df1
 
+st.dataframe(read_df1())
