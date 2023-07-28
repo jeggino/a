@@ -22,7 +22,7 @@ API_KEY = 'm37q4mkeq3fj'
 BACK = 30
 COUNTRIES = ['IT','NL','FR','ES','BE','DE']
 
-df_old = pd.read_sql("SELECT * FROM df",con=engine)[COLUMNS]
+df_old = pd.read_sql_query("SELECT * FROM df",con=engine)[COLUMNS]
 
 # conn = st.experimental_connection(
 #     "local_db",
