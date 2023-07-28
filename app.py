@@ -11,10 +11,9 @@ engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}"
                                pw="Platinum79",
                                db="ebird"))
 
-COLUMNS = ['comName', 'date', 'lat', 'lng', 'locId', 'sciName', 'subId']
-API_KEY = 'm37q4mkeq3fj'
-BACK = 30
-COUNTRIES = ['IT','NL','FR','ES','BE','DE']
+# Query and display the data you inserted
+pet_owners = conn.query('select * from df')
+st.dataframe(pet_owners)
 
 # df_old = pd.read_sql_query("SELECT * FROM df",con=engine)[COLUMNS]
 
