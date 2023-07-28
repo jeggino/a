@@ -2,34 +2,15 @@
 
 import streamlit as st
 import pandas as pd
+import pymysql
 
-# # Create the SQL connection to pets_db as specified in your secrets file.
-# conn = st.experimental_connection('pets_db', type='sql')
+# Database connection
+conn = pymysql.connect(host="localhost", user="root", password="Platinum79", db="ebird")
 
-# # Insert some data with conn.session.
-# with conn.session as s:
-#     s.execute('CREATE TABLE IF NOT EXISTS Tommaso (person TEXT, pet TEXT);')
-#     s.execute('DELETE FROM Tommaso;')
-#     # pet_owners = {'filippo': 'insalata', 'barbara': 'cat', 'alex': 'puppy'}
-#     # for k in pet_owners:
-#     #     s.execute(
-#     #         'INSERT INTO Tommaso (person, pet) VALUES (:owner, :pet);',
-#     #         params=dict(owner=k, pet=pet_owners[k]),
-#     #     )
-#     s.commit()
-
-# # Query and display the data you inserted
-# pet_owners = conn.query('select * from Tommaso')
-# st.dataframe(pet_owners)
-
-conn = st.experimental_connection(
-    "local_db",
-    type="sql",
-    url="mysql+pymysql://{user}:{pw}@localhost/{db}".format(user="root",pw="Platinum79",db="ebird")
-)
+df = pd.read_sql("SELECT * FROM df",con=conn)
 
 # df = conn.query("select * from pet_owners")
-# st.dataframe(df)
+st.dataframe(df)
 
 # conn = st.experimental_connection(
 #     "local_db",
