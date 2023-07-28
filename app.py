@@ -12,7 +12,7 @@ engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}"
                                db="ebird"))
 
 # Query and display the data you inserted
-pet_owners = conn.query('select * from df')
+pet_owners = engine.query('select * from df')
 st.dataframe(pet_owners)
 
 # df_old = pd.read_sql_query("SELECT * FROM df",con=engine)[COLUMNS]
