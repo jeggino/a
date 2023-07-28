@@ -13,9 +13,8 @@ engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}"
 
 q1 = 'SELECT * FROM df'
 
-@st.cache
 def read_df1():
-  df1 = pd.read_sql_query(q1, get_connection())
+  df1 = pd.read_sql_query(q1, engine)
   return df1
 
 st.dataframe(read_df1())
