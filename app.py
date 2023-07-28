@@ -4,13 +4,25 @@ import streamlit as st
 import pandas as pd
 import pymysql
 
-# Database connection
-conn = pymysql.connect(host="localhost", user="root", password="Platinum79", db="ebird")
+# # Database connection
+# conn = pymysql.connect(host="localhost", user="root", password="Platinum79", db="ebird")
 
-df = pd.read_sql("SELECT * FROM df",con=conn)
+# df = pd.read_sql("SELECT * FROM df",con=conn)
 
-# df = conn.query("select * from pet_owners")
-st.dataframe(df)
+# # df = conn.query("select * from pet_owners")
+# st.dataframe(df)
+
+engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}"
+                       .format(user="root",
+                               pw="Platinum79",
+                               db="ebird"))
+
+COLUMNS = ['comName', 'date', 'lat', 'lng', 'locId', 'sciName', 'subId']
+API_KEY = 'm37q4mkeq3fj'
+BACK = 30
+COUNTRIES = ['IT','NL','FR','ES','BE','DE']
+
+df_old = pd.read_sql("SELECT * FROM df",con=engine)[COLUMNS]
 
 # conn = st.experimental_connection(
 #     "local_db",
