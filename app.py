@@ -20,7 +20,7 @@ record = cursor.fetchone()
 if record:
     st.write("GOOOODDDDD")
 else:
-    st.warning(“Incorrect username or password”)
+    st.warning("Somthing wrong")
 
 
 # df1 = view_todo()
