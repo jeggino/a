@@ -12,9 +12,6 @@ engine = create_engine("mysql+pymysql://{user}:{pw}@localhost/{db}"
                                db="ebird"))
 
 q1 = 'SELECT * FROM df'
+df1 = pd.read_sql(q1, engine)
 
-def read_df1():
-  df1 = pd.read_sql_query(q1, engine)
-  return df1
-
-st.dataframe(read_df1())
+st.dataframe(df1)
