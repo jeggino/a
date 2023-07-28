@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 import pymysql
-from sqlalchemy import create_engine
+# from sqlalchemy import create_engine
 
 
 conn = pymysql.connect(
