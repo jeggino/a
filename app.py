@@ -3,8 +3,6 @@ import streamlit as st
 import pandas as pd
 import pymysql
 from sqlalchemy import create_engine
-import mysql.connector
-
 
 
 conn = pymysql.connect(
