@@ -1,29 +1,32 @@
 # streamlit_app.py
-
 import streamlit as st
 import pandas as pd
 import pymysql
 from sqlalchemy import create_engine
-import streamlit as st
 import mysql.connector
 
 
 
-def view_todo():
-    conn = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd="Platinum79",
-        database="ebird"
-    )
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM df")
-    todo = cursor.fetchall()
-    conn.close()
-    return todo
+conn = pymysql.connect(
+    host="localhost",
+    user="root",
+    password="Platinum79",
+    db="ebird"
+)
 
-df1 = view_todo()
-st.dataframe(df1)
+cursor = conn.cursor() 
+query = "SELECT * FROM df"
+cursor.execute(query)
+record = cursor.fetchone()
+
+if record:
+    st.write("GOOOODDDDD")
+else:
+    st.warning(“Incorrect username or password”)
+
+
+# df1 = view_todo()
+# st.dataframe(df1)
 
 
 
