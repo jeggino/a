@@ -206,7 +206,7 @@ with elements("dashboard"):
 df = pd.read_csv("df_raw (2).csv")
 st.dataframe(df)
 
-df_plot = df_updated.groupby("sciName",as_index=False).size().loc[:10].to_dict('records')
+df_plot = df.groupby("sciName",as_index=False).size().loc[:10].to_dict('records')
 
 nivo.Bar(
     data=df_plot,
