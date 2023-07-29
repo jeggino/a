@@ -220,7 +220,7 @@ with elements("bar_chart"):
                 valueScale={ "type": 'linear' },
                 indexScale={ "type": 'band', "round": True },
                 colors={ "scheme": 'nivo' },
-            layout="horizontal"
+            layout="horizontal",
                 # defs={[
                 #     {
                 #         id: 'dots',
