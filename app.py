@@ -3,6 +3,10 @@ import streamlit as st
 from streamlit_elements import elements, mui, html, dashboard
 import pandas as pd
 
+
+st.set_page_config(layout="wide")
+
+
 with st.sidebar:
     with elements("new_element"):
     
