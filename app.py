@@ -124,7 +124,7 @@ with elements("dashboard"):
         # Parameters: element_identifier, x_pos, y_pos, width, height, [item properties...]
         dashboard.Item("first_item", 0, 0, 2, 2, isDraggable=True, isResizable=True),
         dashboard.Item("second_item", 2, 0, 2, 2, isDraggable=True, isResizable=True),
-        dashboard.Item("third_item", 0, 2, 1, 1, isResizable=False),
+        dashboard.Item("third_item", 0, 2, 1, 1, isDraggable=True, isResizable=True, isBounded=True, ),
     ]
 
     # Next, create a dashboard layout using the 'with' syntax. It takes the layout
