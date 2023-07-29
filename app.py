@@ -273,6 +273,16 @@ with elements("bar_chart"):
                 # }},
                 
                 role="application",
+            theme={
+                "background": "#FFFFFF",
+                "textColor": "#31333F",
+                "tooltip": {
+                    "container": {
+                        "background": "#FFFFFF",
+                        "color": "#31333F",
+                    }
+                }
+            },
                 ariaLabel="Nivo bar chart demo",
         )
         
