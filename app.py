@@ -1,6 +1,7 @@
 # streamlit_app.py
 import streamlit as st
 from streamlit_elements import elements, mui, html, dashboard
+import pandas as pd
 
 
 with elements("new_element"):
