@@ -49,7 +49,21 @@ with elements("properties"):
 
 with elements("style_mui_sx"):
 
-    with mui.Box(
+    # For Material UI elements, use the 'sx' property.
+    #
+    # <Box
+    #   sx={{
+    #     bgcolor: 'background.paper',
+    #     boxShadow: 1,
+    #     borderRadius: 2,
+    #     p: 2,
+    #     minWidth: 300,
+    #   }}
+    # >
+    #   Some text in a styled box
+    # </Box>
+
+    mui.Box(
         "Some text in a styled box",
         sx={
             "bgcolor": "background.paper",
@@ -57,14 +71,6 @@ with elements("style_mui_sx"):
             "borderRadius": 2,
             "p": 2,
             "minWidth": 300,
-        }):
-             mui.TextField(
-                label="My text input",
-                # defaultValue="Type here",
-                # variant="standard",
-                defaultValue="Small",
-                variant="standard",
-                size="small",
-                color="warning"
-            )
+        }
+    )
         
