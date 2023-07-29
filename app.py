@@ -135,15 +135,6 @@ with elements("dashboard"):
     # as first parameter, plus additional properties you can find in the GitHub links below.
 
     with dashboard.Grid(layout):
-        
-        # mui.TextField(
-        #     label="My text input dashborad",
-        #     defaultValue="Small",
-        #     variant="standard",
-        #     size="small",
-        #     color="warning",
-        #     key="first_item"
-        # )
 
         from streamlit_elements import nivo
 
@@ -271,7 +262,6 @@ with elements("dashboard"):
                     get_radius=200,
                 ),
             ],
-            key="third_item",
 
         ))
 
