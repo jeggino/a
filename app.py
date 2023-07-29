@@ -220,7 +220,7 @@ with elements("dashboard"):
             borderWidth=2,
             motionConfig="wobbly",
             role="application",
-            labelTextColor={{ theme: 'background' }},
+            labelTextColor={ "theme": 'background' },
             theme={
                 "background": "#FFFFFF",
                 "textColor": "#31333F",
