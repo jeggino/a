@@ -259,7 +259,6 @@ nivo.Bar(
         labelSkipWidth={12},
         labelSkipHeight={12},
         labelTextColor={{
-            from: 'color',
             modifiers: [
                 [
                     'darker',
