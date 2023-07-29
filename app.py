@@ -12,7 +12,7 @@ with elements("multiple_children"):
 
     mui.Button(
         mui.icon.EmojiPeople,
-        mui.icon.DoubleArrow,
+        mui.icon.AddLocation,
         "Button with multiple children"
     )
 
