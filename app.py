@@ -57,5 +57,15 @@ with elements("style_mui_sx"):
             "borderRadius": 2,
             "p": 2,
             "minWidth": 300,
-        }
+        },
+         mui.TextField(
+            label="My text input",
+            # defaultValue="Type here",
+            # variant="standard",
+            defaultValue="Small",
+            variant="standard",
+            size="small",
+            color="warning"
+        )
+        
     )
