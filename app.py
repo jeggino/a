@@ -253,7 +253,7 @@ with elements("dashboard"):
             key="third_item",
             # data=data,
             features="https://maps.amsterdam.nl/open_geodata/geojson_lnglat.php?KAARTLAAG=INDELING_WIJK&THEMA=gebiedsindeling",
-            margin={ "top": 0, "right": 0, "bottom": 0, "left": 0 }
+            margin={ "top": 0, "right": 0, "bottom": 0, "left": 0 },
             colors="RdBu",
             domain=[ 0, 1000000 ],
             unknownColor="#101b42",
