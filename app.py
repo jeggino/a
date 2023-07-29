@@ -225,6 +225,47 @@ with elements("dashboard"):
                 }
             },
         )
+
+        data = [
+          {
+            "id": "AFG",
+            "value": 92932
+          },
+          {
+            "id": "AGO",
+            "value": 662858
+          },
+          {
+            "id": "ALB",
+            "value": 202402
+          },
+          {
+            "id": "ARE",
+            "value": 343593
+          },
+          {
+            "id": "ARG",
+            "value": 997989
+          }]
+ 
+
+        nivo.ChoroplethCanvas(
+            key="third_item",
+            data=data,
+            # features="/* please have a look at the description for usage */"
+            # margin={ top: 0, right: 0, bottom: 0, left: 0 }
+            colors="RdBu",
+            domain=[ 0, 1000000 ],
+            unknownColor="#101b42",
+            label="properties.name",
+            valueFormat=".2s",
+            projectionTranslation=[ 0.5, 0.5 ],
+            projectionRotation=[ 0, 0, 0 ],
+            enableGraticule=True,
+            graticuleLineColor="rgba(0, 0, 0, .2)",
+            borderWidth=0.5,
+            borderColor="#101b42",
+        )
         
         # mui.Paper("Third item (cannot resize)", key="third_item")
 
