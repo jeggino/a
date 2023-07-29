@@ -200,7 +200,7 @@ with elements("dashboard"):
 
 
         # mui.Paper("First item", key="first_item")
-        mui.Paper("Second item (cannot drag)", key="second_item")
+        # mui.Paper("Second item (cannot drag)", key="second_item")
         mui.Paper("Third item (cannot resize)", key="third_item")
 
 df = pd.read_csv("df_raw (2).csv")
@@ -212,6 +212,7 @@ with elements("bar_chart"):
     
     with mui.Box(sx={"height": 500}):
         nivo.Bar(
+             key="second_item",
             data=df_plot,
                 indexBy="sciName",
                 keys=["size"],
