@@ -214,12 +214,13 @@ with elements("dashboard"):
         padding={0.3},
         valueScale={ "type": 'linear' },
         indexScale={ "type": 'band', "round": True },
-        colors={ "scheme": 'brown_blueGreen' },
+        colors={ "scheme": 'red' },
         layout="horizontal",
             borderRadius=8,
         borderWidth=2,
             motionConfig="wobbly",
         role="application",
+            labelTextColor={{ theme: 'background' }}
         theme={
         "background": "#FFFFFF",
         "textColor": "#31333F",
