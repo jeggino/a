@@ -212,6 +212,7 @@ with elements("dashboard"):
             valueScale={ "type": 'linear' },
             indexScale={ "type": 'band', "round": True },
             colors={ "scheme": 'red_yellow_blue' },
+            label="properties.size",
             layout="horizontal",
             borderRadius=8,
             borderWidth=2,
