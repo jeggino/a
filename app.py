@@ -6,8 +6,8 @@ import pymysql
 
 
 conn = pymysql.connect(
-    host="localhost",
-    # user="root",
+    # host="localhost",
+    user="root",
     password="Platinum79",
     database="ebird"
 )
