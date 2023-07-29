@@ -201,17 +201,11 @@ with elements("dashboard"):
 
         # mui.Paper("First item", key="first_item")
         # mui.Paper("Second item (cannot drag)", key="second_item")
-        mui.Paper("Third item (cannot resize)", key="third_item")
-
-df = pd.read_csv("df_raw (2).csv")
-st.dataframe(df)
-
-df_plot = df.groupby("sciName",as_index=False).size().loc[:10].to_dict('records')
-
-with elements("bar_chart"):
-    
-    with mui.Box(sx={"height": 500}):
-        nivo.Bar(
+        df = pd.read_csv("df_raw (2).csv")
+        st.dataframe(df)
+        
+        df_plot = df.groupby("sciName",as_index=False).size().loc[:10].to_dict('records')
+         nivo.Bar(
              key="second_item",
             data=df_plot,
                 indexBy="sciName",
@@ -286,6 +280,13 @@ with elements("bar_chart"):
             },
                 ariaLabel="Nivo bar chart demo",
         )
+        
+        mui.Paper("Third item (cannot resize)", key="third_item")
+
+
+
+
+       
         
         
             
