@@ -204,7 +204,7 @@ with elements("dashboard"):
         mui.Paper("Third item (cannot resize)", key="third_item")
 
 df = pd.read_csv("df_raw (2).csv")
-st,dataframe(df)
+st.dataframe(df)
 
 
 
