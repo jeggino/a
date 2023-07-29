@@ -39,7 +39,7 @@ with elements("properties"):
             # defaultValue="Type here",
             # variant="standard",
             defaultValue="Small",
-            variant="filled",
+            variant="standard",
             size="small"
         )
 
