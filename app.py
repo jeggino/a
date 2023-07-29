@@ -230,7 +230,6 @@ with elements("dashboard"):
             }
         }
         },
-            onClick=
         )
         
         mui.Paper("Third item (cannot resize)", key="third_item")
