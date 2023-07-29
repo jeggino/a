@@ -29,4 +29,4 @@ with elements("nested_children"):
     with mui.Button:
         mui.icon.EmojiPeople()
         mui.icon.DoubleArrow()
-        mui.Typography("Button with multiple children")
+        mui.Typography("Button with multiple children_2")
