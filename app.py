@@ -245,7 +245,6 @@ with elements("dashboard"):
            columns=['lat', 'lon'])
         
         st.pydeck_chart(pdk.Deck(
-            key="third_item",
             map_style=None,
             initial_view_state=pdk.ViewState(
                 latitude=37.76,
@@ -272,6 +271,8 @@ with elements("dashboard"):
                     get_radius=200,
                 ),
             ],
+            key="third_item",
+
         ))
 
 
