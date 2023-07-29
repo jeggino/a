@@ -257,7 +257,7 @@ with elements("dashboard"):
             colors="RdBu",
             domain=[ 0, 1000000 ],
             unknownColor="#101b42",
-            label="properties.name",
+            label="properties.id",
             # valueFormat=".2s",
             # projectionTranslation=[ 0.5, 0.5 ],
             # projectionRotation=[ 0, 0, 0 ],
