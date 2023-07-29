@@ -17,6 +17,15 @@ with elements("multiple_children"):
     )
 
 
+with elements("nested_children"):
+
+   
+    with mui.Paper:
+        with mui.Typography:
+            html.p("Hello world")
+            html.p("Goodbye world")
+
+
     with mui.Button:
         mui.icon.EmojiPeople()
         mui.icon.DoubleArrow()
