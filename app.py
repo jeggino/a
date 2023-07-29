@@ -36,8 +36,11 @@ with elements("properties"):
     with mui.Paper(elevation=3, variant="outlined", square=True):
         mui.TextField(
             label="My text input",
-            defaultValue="Type here",
-            variant="standard",
+            # defaultValue="Type here",
+            # variant="standard",
+            defaultValue="Small",
+            variant="filled",
+            size="small"
         )
 
 
