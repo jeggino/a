@@ -105,8 +105,7 @@ with elements("callbacks_retrieve_data"):
     # property of the text field.
     mui.TextField(
             label="My text input",
-            # defaultValue="Type here",
-            # variant="standard",
+            onChange=handle_change,
             defaultValue="Small",
             variant="standard",
             size="small",
