@@ -199,12 +199,9 @@ with elements("dashboard"):
         )
 
 
-        # mui.Paper("First item", key="first_item")
-        # mui.Paper("Second item (cannot drag)", key="second_item")
-        df = pd.read_csv("df_raw (2).csv")
-        st.dataframe(df)
-        
+        df = pd.read_csv("df_raw (2).csv")       
         df_plot = df.groupby("sciName",as_index=False).size().loc[:10].to_dict('records')
+        
         nivo.Bar(
             key="second_item",
             data=df_plot,
