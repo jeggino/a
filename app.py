@@ -202,6 +202,9 @@ with elements("dashboard"):
         mui.Paper("Second item (cannot drag)", key="second_item")
         mui.Paper("Third item (cannot resize)", key="third_item")
 
+df = pd.read_csv("df_raw (2).csv")
+st,dataframe(df)
+
 
 
     
