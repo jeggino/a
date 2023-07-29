@@ -206,31 +206,31 @@ with elements("dashboard"):
         
         df_plot = df.groupby("sciName",as_index=False).size().loc[:10].to_dict('records')
         nivo.Bar(
-        key="second_item",
-        data=df_plot,
-        indexBy="sciName",
-        keys=["size"],
-        margin={ "top": 50, "right": 130, "bottom": 50, "left": 160 },
-        padding={0.3},
-        valueScale={ "type": 'linear' },
-        indexScale={ "type": 'band', "round": True },
-        colors={ "scheme": 'red' },
-        layout="horizontal",
+            key="second_item",
+            data=df_plot,
+            indexBy="sciName",
+            keys=["size"],
+            margin={ "top": 50, "right": 130, "bottom": 50, "left": 160 },
+            padding={0.3},
+            valueScale={ "type": 'linear' },
+            indexScale={ "type": 'band', "round": True },
+            colors={ "scheme": 'red' },
+            layout="horizontal",
             borderRadius=8,
-        borderWidth=2,
+            borderWidth=2,
             motionConfig="wobbly",
-        role="application",
-            labelTextColor={ theme: 'background' },
-        theme={
-        "background": "#FFFFFF",
-        "textColor": "#31333F",
-        "tooltip": {
-            "container": {
+            role="application",
+            labelTextColor={{ theme: 'background' }},
+            theme={
                 "background": "#FFFFFF",
-                "color": "#31333F",
-            }
-        }
-        },
+                "textColor": "#31333F",
+                "tooltip": {
+                    "container": {
+                        "background": "#FFFFFF",
+                        "color": "#31333F",
+                    }
+                }
+            },
         )
         
         mui.Paper("Third item (cannot resize)", key="third_item")
