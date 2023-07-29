@@ -269,7 +269,6 @@ nivo.Bar(
         
         role="application",
         ariaLabel="Nivo bar chart demo",
-        barAriaLabel={e=>e.id+": "+e.formattedValue+" in country: "+e.indexValue}
 )
 
 
