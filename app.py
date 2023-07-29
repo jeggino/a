@@ -40,7 +40,8 @@ with elements("properties"):
             # variant="standard",
             defaultValue="Small",
             variant="standard",
-            size="small"
+            size="small",
+            color="warning"
         )
 
 
