@@ -258,13 +258,13 @@ with elements("dashboard"):
             domain=[ 0, 1000000 ],
             unknownColor="#101b42",
             label="properties.name",
-            valueFormat=".2s",
-            projectionTranslation=[ 0.5, 0.5 ],
-            projectionRotation=[ 0, 0, 0 ],
-            enableGraticule=True,
-            graticuleLineColor="rgba(0, 0, 0, .2)",
-            borderWidth=0.5,
-            borderColor="#101b42",
+            # valueFormat=".2s",
+            # projectionTranslation=[ 0.5, 0.5 ],
+            # projectionRotation=[ 0, 0, 0 ],
+            # enableGraticule=True,
+            # graticuleLineColor="rgba(0, 0, 0, .2)",
+            # borderWidth=0.5,
+            # borderColor="#101b42",
         )
         
         # mui.Paper("Third item (cannot resize)", key="third_item")
