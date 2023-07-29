@@ -47,3 +47,15 @@ with elements("properties"):
 
     mui.Collapse(in_=True)
 
+with elements("style_mui_sx"):
+
+    mui.Box(
+        "Some text in a styled box",
+        sx={
+            "bgcolor": "background.paper",
+            "boxShadow": 1,
+            "borderRadius": 2,
+            "p": 2,
+            "minWidth": 300,
+        }
+    )
