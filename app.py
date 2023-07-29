@@ -30,3 +30,16 @@ with elements("nested_children"):
         mui.icon.EmojiPeople()
         mui.icon.DoubleArrow()
         mui.Typography("Button with multiple children_2")
+
+with elements("properties"):
+
+    with mui.Paper(elevation=3, variant="outlined", square=True):
+        mui.TextField(
+            label="My text input",
+            defaultValue="Type here",
+            variant="outlined",
+        )
+
+
+    mui.Collapse(in_=True)
+
