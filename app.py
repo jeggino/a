@@ -210,12 +210,15 @@ with elements("dashboard"):
         data=df_plot,
         indexBy="sciName",
         keys=["size"],
-        margin={ "top": 50, "right": 130, "bottom": 50, "left": 60 },
+        margin={ "top": 50, "right": 130, "bottom": 50, "left": 160 },
         padding={0.3},
         valueScale={ "type": 'linear' },
         indexScale={ "type": 'band', "round": True },
-        colors={ "scheme": 'nivo' },
+        colors={ "scheme": 'brown_blueGreen' },
         layout="horizontal",
+            borderRadius=8,
+        borderWidth=2,
+            motionConfig="wobbly",
         role="application",
         theme={
         "background": "#FFFFFF",
@@ -227,6 +230,7 @@ with elements("dashboard"):
             }
         }
         },
+            onClick=
         )
         
         mui.Paper("Third item (cannot resize)", key="third_item")
