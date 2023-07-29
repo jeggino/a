@@ -9,7 +9,7 @@ conn = pymysql.connect(
     host="localhost",
     user="root",
     password="Platinum79",
-    db="ebird"
+    database="ebird"
 )
 
 cursor = conn.cursor() 
