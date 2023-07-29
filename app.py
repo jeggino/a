@@ -7,7 +7,7 @@ import pymysql
 
 conn = pymysql.connect(
     host="localhost",
-    user="root",
+    # user="root",
     password="Platinum79",
     database="ebird"
 )
