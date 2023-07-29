@@ -37,7 +37,7 @@ with elements("properties"):
         mui.TextField(
             label="My text input",
             defaultValue="Type here",
-            variant="outlined",
+            # variant="outlined",
         )
 
 
