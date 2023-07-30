@@ -29,46 +29,51 @@ list_ = {}
 for index, column in df_code.iterrows():
     list_[column["Country name"]] = column["ISO 3166 code"]
 
-COUNTRIES = st.sidebar.multiselect("Select one o more countries", df_code["Country name"], placeholder="Choose an option")
+COUNTRIES = st.sidebar.multiselect("Select one o more countries", df_code["Country name"], max_selections=10, placeholder="Choose an option")
 
 
 try:
     b = []
     for country in COUNTRIES:
         b.append(list_[country])
+
+    if len(b)>10:
+        st.error('Sorry, no more than 10 countries', icon="🚨")
+        st.stop()
+        
     records = get_observations(API_KEY, b,back=BACK)
 
 except:
     st.stop()
 
-# try:
-df_ebird = pd.DataFrame(records)
-df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
-df_ebird = df_ebird[COLUMNS]
-
-col1, col2 = st.columns([2,3])
-
-with col1:
-    import altair as alt
-    NUMBER = st.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
-
-    source = df_ebird.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index().loc[:NUMBER]
+try:
+    df_ebird = pd.DataFrame(records)
+    df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
+    df_ebird = df_ebird[COLUMNS]
     
-    bar_chart = alt.Chart(source).mark_bar().encode(
-        x='size',
-        y='comName',
-        order=alt.Order(
-          # Sort the segments of the bars by this field
-          'size',
-          sort='descending'
+    col1, col2 = st.columns([2,3])
+    
+    with col1:
+        import altair as alt
+        NUMBER = st.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
+    
+        source = df_ebird.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index().loc[:NUMBER]
+        
+        bar_chart = alt.Chart(source).mark_bar().encode(
+            x='size',
+            y='comName',
+            order=alt.Order(
+              # Sort the segments of the bars by this field
+              'size',
+              sort='descending'
+            )
         )
-    )
+        
+        st.altair_chart(bar_chart, theme=None, use_container_width=True)
+        
     
-    st.altair_chart(bar_chart, theme=None, use_container_width=True)
-    
+    with col2:
+        st.map(data=df_ebird, latitude="lat", longitude="lng", color=None, size=None, zoom=None, use_container_width=True)
 
-with col2:
-    st.map(data=df_ebird, latitude="lat", longitude="lng", color=None, size=None, zoom=None, use_container_width=True)
-
-# except:
-#     st.error('Sorry, no data', icon="🚨")
+except:
+    st.error('Sorry, no data', icon="🚨")
