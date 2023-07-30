@@ -2,3 +2,4 @@ streamlit
 pandas
 ebird-api
 requests
+lxml 
