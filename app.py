@@ -9,7 +9,7 @@ BACK = st.number_input("Number of days back", min_value=0, max_value=30, value=0
 COLUMNS = ['comName', 'date', 'lat', 'lng', 'locId', 'sciName', 'subId']
 
 
-r = requests.get(url)
+r = requests.get(URL)
 df_code = pd.read_html(r.content)[0]
 list_ = {}
 for index, column in df_code.iterrows():
