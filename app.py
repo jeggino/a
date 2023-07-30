@@ -60,7 +60,7 @@ try:
             y='comName',
             order=alt.Order(
               # Sort the segments of the bars by this field
-              'size',
+              'comName',
               sort='descending'
             )
         )
