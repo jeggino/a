@@ -64,7 +64,7 @@ try:
             )
         )
         
-        # st.altair_chart(bar_chart)
+        st.altair_chart(bar_chart, theme=None, use_container_width=True)
         
 
     with col2:
