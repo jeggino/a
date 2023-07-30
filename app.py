@@ -17,8 +17,13 @@ for index, column in df_code.iterrows():
 
 COUNTRIES = st.selectbox("Select one o more countries", df_code["Country name"], placeholder="Choose an option")
 records = get_observations(API_KEY, list_[COUNTRIES],back=BACK)
-df_ebird = pd.DataFrame(records)
-df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
-df_ebird = df_ebird[COLUMNS]
 
-st.dataframe(df_ebird)
+try:
+    df_ebird = pd.DataFrame(records)
+    df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
+    df_ebird = df_ebird[COLUMNS]
+    
+    st.dataframe(df_ebird)
+
+except:
+    st.error('Sorry, no data', icon="🚨")
