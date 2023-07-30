@@ -15,7 +15,7 @@ list_ = {}
 for index, column in df_code.iterrows():
     list_[column['ISO 3166 code']] = column["Country name"]
 
-COUNTRIES = st.multiselect("Select one o more countries", df_code["Country name"].tolist(, default=None, format_func=special_internal_function, key=None, help=None, on_change=None, args=None, kwargs=None, *, max_selections=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
+COUNTRIES = st.multiselect("Select one o more countries", df_code["Country name"].tolist(), placeholder="Choose an option")
   
 records = get_observations(API_KEY, COUNTRIES,back=BACK)
 df_ebird = pd.DataFrame(records)
