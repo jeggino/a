@@ -5,7 +5,7 @@ import requests
 
 URL = "http://fasteri.com/list/2/short-names-of-countries-and-iso-3166-codes"
 API_KEY = 'm37q4mkeq3fj'
-BACK = st.number_input("Number of days back", min_value=1, max_value=30, value=0, step=0,  label_visibility="visible")
+BACK = st.number_input("Number of days back", min_value=0, max_value=30, value=0, step=0,  label_visibility="visible")
 COLUMNS = ['comName', 'date', 'lat', 'lng', 'locId', 'sciName', 'subId']
 
 
