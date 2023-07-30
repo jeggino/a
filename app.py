@@ -13,11 +13,11 @@ r = requests.get(URL)
 df_code = pd.read_html(r.content)[0]
 list_ = {}
 for index, column in df_code.iterrows():
-    list_[column['ISO 3166 code']] = column["Country name"]
+    list_[column["Country name"]] = column["ISO 3166 code"]
 
 COUNTRIES = st.multiselect("Select one o more countries", df_code["Country name"].tolist(), placeholder="Choose an option")
   
-records = get_observations(API_KEY, COUNTRIES,back=BACK)
+records = get_observations(API_KEY, list_[COUNTRIES],back=BACK)
 df_ebird = pd.DataFrame(records)
 df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
 df_ebird = df_ebird[COLUMNS]
