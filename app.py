@@ -52,7 +52,7 @@ with col1:
     import altair as alt
     NUMBER = st.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
 
-    source = df_ebird["comName"].value_counts()[:NUMBER].to_frame().reset_index()
+    source = df_ebird.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index().loc[:NUMBER]
     
     bar_chart = alt.Chart(source).mark_bar().encode(
         x='comName',
