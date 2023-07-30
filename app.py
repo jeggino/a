@@ -55,11 +55,11 @@ with col1:
     source = df_ebird.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index().loc[:NUMBER]
     
     bar_chart = alt.Chart(source).mark_bar().encode(
-        x='comName',
-        y='index',
+        x='size',
+        y='comName',
         order=alt.Order(
           # Sort the segments of the bars by this field
-          'comName',
+          'size',
           sort='ascending'
         )
     )
