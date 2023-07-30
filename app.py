@@ -54,7 +54,7 @@ try:
 
         source = df_ebird["comName"].value_counts()[:NUMBER].to_frame().reset_index()
         
-        alt.Chart(source).mark_bar().encode(
+        bar_chart = alt.Chart(source).mark_bar().encode(
             x='comName',
             y='index',
             order=alt.Order(
@@ -63,6 +63,8 @@ try:
               sort='ascending'
             )
         )
+        
+        st.altair_chart(bar_chart, use_container_width=True, theme="streamlit")
         
 
     with col2:
