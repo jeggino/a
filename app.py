@@ -36,10 +36,6 @@ try:
     b = []
     for country in COUNTRIES:
         b.append(list_[country])
-
-    if len(b)>10:
-        st.error('Sorry, no more than 10 countries', icon="🚨")
-        st.stop()
         
     records = get_observations(API_KEY, b,back=BACK)
 
