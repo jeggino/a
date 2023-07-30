@@ -60,7 +60,7 @@ with col1:
         order=alt.Order(
           # Sort the segments of the bars by this field
           'size',
-          sort='ascending'
+          sort='descending'
         )
     )
     
