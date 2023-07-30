@@ -1,13 +1,4 @@
-# streamlit_app.py
-
 import streamlit as st
 
-# Initialize connection.
-conn = st.experimental_connection('mysql', type='sql')
-
-# Perform query.
-df = conn.query('SELECT * from df;', ttl=600)
-
-# # Print results.
-# for row in df.itertuples():
-#     st.write(f"{row.name} has a :{row.pet}:")
+# Create the SQL connection to pets_db as specified in your secrets file.
+conn = st.experimental_connection('pets_db', type='sql')
