@@ -6,5 +6,5 @@ import pymysql
 conn = st.experimental_connection('pets_db', type='sql')
 st.write("ok")
 
-df = pd.read_sql("SELECT * FROM df",con=conn)
+df = pd.read_sql_query("SELECT * FROM df",con=conn)
 st.dataframe(df)
