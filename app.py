@@ -1,11 +1,16 @@
 import streamlit as st
 import pandas as pd
-import pymysql
-from sqlalchemy import create_engine
+from ebird.api import get_observations
 
-# Create the SQL connection to pets_db as specified in your secrets file.
-conn = create_engine("mysql+pymysql://{user}:{pw}@127.0.0.1/{db}".format(user="root",pw="Platinum79",db="ebird"))
-st.write("ok")
 
-df = pd.read_sql_query("SELECT * FROM df",con=conn)
-st.dataframe(df)
+API_KEY = 'm37q4mkeq3fj'
+BACK = 30
+COUNTRIES = ['IT','NL','FR','ES','BE','DE']
+
+
+records = get_observations(API_KEY, COUNTRIES,back=BACK)
+df_ebird = pd.DataFrame(records)
+df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
+df_ebird = df_ebird[COLUMNS]
+
+st.dataframe(df_ebird)
