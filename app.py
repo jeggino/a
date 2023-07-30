@@ -23,7 +23,7 @@ try:
     df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
     df_ebird = df_ebird[COLUMNS]
 
-    col1, col2 = st.columns(3)
+    col1, col2 = st.columns([2,3])
 
     with col1:
         st.dataframe(df_ebird)
