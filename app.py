@@ -31,8 +31,12 @@ for index, column in df_code.iterrows():
 
 COUNTRIES = st.sidebar.multiselect("Select one o more countries", df_code["Country name"], placeholder="Choose an option")
 
+
 try:
-    records = get_observations(API_KEY, list_[COUNTRIES],back=BACK)
+    b = []
+    for country in COUNTRIES:
+        b.append(list_[country])
+    records = get_observations(API_KEY, b,back=BACK)
 
 except:
     st.stop()
