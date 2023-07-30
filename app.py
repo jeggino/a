@@ -1,15 +1,22 @@
 import streamlit as st
 import pandas as pd
 from ebird.api import get_observations
+import requests
 
-
+URL = "http://fasteri.com/list/2/short-names-of-countries-and-iso-3166-codes"
 API_KEY = 'm37q4mkeq3fj'
-BACK = 30
-COUNTRIES = ['IT','NL','FR','ES','BE','DE']
+BACK = st.number_input("Number of days back", min_value=0, max_value=30, value=0, step=1,  label_visibility="visible")
 COLUMNS = ['comName', 'date', 'lat', 'lng', 'locId', 'sciName', 'subId']
 
 
+r = requests.get(url)
+df_code = pd.read_html(r.content)[0]
+list_ = {}
+for index, column in df_code.iterrows():
+    list_[column['ISO 3166 code']] = column["Country name"]
 
+COUNTRIES = st.multiselect("Select one o more countries", df_code["Country name"].tolist(, default=None, format_func=special_internal_function, key=None, help=None, on_change=None, args=None, kwargs=None, *, max_selections=None, placeholder="Choose an option", disabled=False, label_visibility="visible")
+  
 records = get_observations(API_KEY, COUNTRIES,back=BACK)
 df_ebird = pd.DataFrame(records)
 df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
