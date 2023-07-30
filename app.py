@@ -3,6 +3,20 @@ import pandas as pd
 from ebird.api import get_observations
 import requests
 
+
+st.set_page_config(
+    page_title="Ebird Cool App",
+    page_icon="🪶",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://www.extremelycoolapp.com/help',
+        'Report a bug': "https://www.extremelycoolapp.com/bug",
+        'About': "# This is a header. This is an *extremely* cool app!"
+    }
+)
+
+
 URL = "http://fasteri.com/list/2/short-names-of-countries-and-iso-3166-codes"
 API_KEY = 'm37q4mkeq3fj'
 BACK = st.sidebar.number_input("Number of days back", min_value=1, max_value=30, value=1, step=1,  label_visibility="visible")
