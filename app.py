@@ -64,7 +64,7 @@ try:
             )
         )
         
-        st.altair_chart(bar_chart)
+        # st.altair_chart(bar_chart)
         
 
     with col2:
