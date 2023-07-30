@@ -1,5 +1,5 @@
 import streamlit as st
-
+import pandas as pd
 # Create the SQL connection to pets_db as specified in your secrets file.
 conn = st.experimental_connection('pets_db', type='sql')
 
