@@ -236,7 +236,7 @@ try:
         deck = pdk.Deck(
             views=[view],
             initial_view_state=view_state,
-            tooltip={"text": "SubId: {subId}, Number of observations: {comName}"},
+            tooltip={"text": "SubId: {subId}, \nNumber of observations: {comName}"},
             layers=layers,
             map_provider=None,
             # Note that this must be set for the globe to be opaque
@@ -262,7 +262,7 @@ try:
         r = pdk.Deck(
             layers=[layer],
             initial_view_state=view_state,
-            tooltip={"text": "{position}\nCount: {count}"},
+            tooltip={"text": "Number of observations: {count}"},
         )
 
         map3.pydeck_chart(pydeck_obj=r, use_container_width=True)
