@@ -51,7 +51,7 @@ try:
     col1, col2 = st.columns([2,3])
     
     with col1:
-        tab1, tab2, tab3  = st.tabs(["Chart 1", "Chart 2", "Chart 3"])
+        tab1, tab2, tab3, tab4  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4"])
         import altair as alt
         NUMBER = tab1.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
     
@@ -117,6 +117,20 @@ try:
         )
 
         tab3.altair_chart(hexbin, theme=None, use_container_width=True)
+
+        #---
+        source = df_updated.groupby("date",as_index=False).size()
+
+        bar = alt.Chart(source).mark_bar().encode(
+            x='date:T',
+            y='size:Q'
+        )
+        
+        rule = alt.Chart(source).mark_rule(color='red').encode(
+            y='mean(size):Q'
+        )
+        
+        tab4.altair_chart((bar + rule), theme=None, use_container_width=True)
     
     with col2:
         st.map(data=df_ebird, latitude="lat", longitude="lng", color=None, size=None, zoom=None, use_container_width=True)
