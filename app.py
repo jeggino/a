@@ -222,7 +222,7 @@ try:
                 data=df,
                 get_elevation="comName",
                 get_position="geometry.coordinates",
-                elevation_scale=100,
+                elevation_scale=10000,
                 pickable=True,
                 auto_highlight=True,
                 radius=2000,
