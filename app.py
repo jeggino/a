@@ -265,7 +265,7 @@ try:
             tooltip={"text": "{position}\nCount: {count}"},
         )
 
-        map3.pydeck_chart(pydeck_obj=3, use_container_width=True)
+        map3.pydeck_chart(pydeck_obj=r, use_container_width=True)
 
                     
 except:
