@@ -51,7 +51,7 @@ try:
     col1, col2 = st.columns([2,3])
     
     with col1:
-        tab1, tab2  = st.tabs(["Chart 1", "Chart 2"])
+        tab1, tab2, tab3  = st.tabs(["Chart 1", "Chart 2", "Chart 3"])
         import altair as alt
         NUMBER = tab1.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
     
@@ -67,7 +67,7 @@ try:
         #---
         source = df_ebird.groupby("date",as_index=False).size()
 
-        heatmap_chart = alt.Chart(source, title="Daily Max Temperatures (C) in Seattle, WA").mark_rect().encode(
+        hexbin = alt.Chart(source, title="Daily Max Temperatures (C) in Seattle, WA").mark_rect().encode(
             x=alt.X("date(date):O", title="Day", axis=alt.Axis(format="%e", labelAngle=0)),
             y=alt.Y("month(date):O", title="Month"),
             color=alt.Color("sum(size)", legend=alt.Legend(title=None)),
@@ -77,7 +77,44 @@ try:
             ],
         ).configure_view(step=13, strokeWidth=0).configure_axis(domain=False)
 
-        tab2.altair_chart(heatmap_chart, theme=None, use_container_width=True)
+        tab3.altair_chart(hexbin, theme=None, use_container_width=True)
+
+        #---
+        source = df_ebird.groupby("date",as_index=False).size()
+
+        # Size of the hexbins
+        size = 15
+        # Count of distinct x features
+        xFeaturesCount = 12
+        # Count of distinct y features
+        yFeaturesCount = 7
+        # Name of the x field
+        xField = 'date'
+        # Name of the y field
+        yField = 'date'
+        
+        # the shape of a hexagon
+        hexagon = "M0,-2.3094010768L2,-1.1547005384 2,1.1547005384 0,2.3094010768 -2,1.1547005384 -2,-1.1547005384Z"
+        
+        alt.Chart(source).mark_point(size=size**2, shape=hexagon).encode(
+            x=alt.X('xFeaturePos:Q', axis=alt.Axis(title='Month',
+                                                   grid=False, tickOpacity=0, domainOpacity=0)),
+            y=alt.Y('day(' + yField + '):O', axis=alt.Axis(title='Weekday',
+                                                           labelPadding=20, tickOpacity=0, domainOpacity=0)),
+            stroke=alt.value('black'),
+            strokeWidth=alt.value(0.2),
+            fill=alt.Color('sum(size):Q', scale=alt.Scale(scheme='darkblue')),
+            tooltip=['month(' + xField + '):O', 'day(' + yField + '):O', 'sum(size):Q']
+        ).transform_calculate(
+            # This field is required for the hexagonal X-Offset
+            xFeaturePos='(day(datum.' + yField + ') % 2) / 2 + month(datum.' + xField + ')'
+        ).properties(
+            # Exact scaling factors to make the hexbins fit
+            width=size * xFeaturesCount * 2,
+            height=size * yFeaturesCount * 1.7320508076,  # 1.7320508076 is approx. sin(60°)*2
+        ).configure_view(
+            strokeWidth=0
+        )
         
     
     with col2:
