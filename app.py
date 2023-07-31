@@ -182,11 +182,15 @@ try:
                         api_keys={"mapbox":"pk.eyJ1IjoiamVnZ2lubyIsImEiOiJjbDFlMTA3MmowMWV4M2h1Z2ZobWFmZDhvIn0.OYXDSrOZ5vWheUZ1nFSB_Q"},
                         map_provider='mapbox',
                         map_style ="mapbox://styles/jeggino/clieqivbp005e01pggw0e5zxh")
-                        st.map(data=df_filter, latitude="lat", longitude="lng", color=None, size=None, zoom=None, use_container_width=True)
+
+            st.pydeck_chart(pydeck_obj=r, use_container_width=False)
+
+
+            st.map(data=df_filter, latitude="lat", longitude="lng", color=None, size=None, zoom=None, use_container_width=True)
             
-                except:
-                    st.sidebar.warning('Select a species', icon="⚠️")
-                    st.stop()
-        
+    except:
+        st.sidebar.warning('Select a species', icon="⚠️")
+        st.stop()
+
 except:
     st.error('Sorry, no data', icon="🚨")
