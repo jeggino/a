@@ -57,7 +57,7 @@ try:
         source = df_ebird.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index().loc[:NUMBER]
         
         bar_chart = alt.Chart(source).mark_bar().encode(
-            x=alt.X(field='size', sort="descending", title="Number of observations"),
+            x=alt.X(field='size:Q', sort="descending", title="Number of observations"),
             y='comName',
         )
         
