@@ -67,7 +67,7 @@ try:
         #---
         source = df_ebird.groupby("date",as_index=False).size()
 
-        heatmap_chart - alt.Chart(source, title="Daily Max Temperatures (C) in Seattle, WA").mark_rect().encode(
+        heatmap_chart = alt.Chart(source, title="Daily Max Temperatures (C) in Seattle, WA").mark_rect().encode(
             x=alt.X("date(date):O", title="Day", axis=alt.Axis(format="%e", labelAngle=0)),
             y=alt.Y("month(date):O", title="Month"),
             color=alt.Color("sum(size)", legend=alt.Legend(title=None)),
