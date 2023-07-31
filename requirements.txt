@@ -4,3 +4,4 @@ ebird-api
 requests
 lxml 
 streamlit-option-menu
+geopandas
