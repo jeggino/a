@@ -183,10 +183,10 @@ try:
                         map_provider='mapbox',
                         map_style ="mapbox://styles/jeggino/clieqivbp005e01pggw0e5zxh")
 
-            st.pydeck_chart(pydeck_obj=r, use_container_width=False)
+            st.pydeck_chart(pydeck_obj=r, use_container_width=True)
 
 
-            # st.map(data=df_filter, latitude="lat", longitude="lng", color=None, size=None, zoom=None, use_container_width=True)
+            st.map(data=df_filter, latitude="lat", longitude="lng", color=None, size=None, zoom=None, use_container_width=True)
             
     except:
         st.sidebar.warning('Select a species', icon="⚠️")
