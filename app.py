@@ -67,7 +67,7 @@ try:
         #---
         source = df_ebird.groupby("date",as_index=False).size()
 
-        hexbin = alt.Chart(source, title="Daily Max Temperatures (C) in Seattle, WA").mark_rect().encode(
+        heatmap = alt.Chart(source, title="Daily Max Temperatures (C) in Seattle, WA").mark_rect().encode(
             x=alt.X("date(date):O", title="Day", axis=alt.Axis(format="%e", labelAngle=0)),
             y=alt.Y("month(date):O", title="Month"),
             color=alt.Color("sum(size)", legend=alt.Legend(title=None)),
@@ -77,7 +77,7 @@ try:
             ],
         ).configure_view(step=13, strokeWidth=0).configure_axis(domain=False)
 
-        tab3.altair_chart(hexbin, theme=None, use_container_width=True)
+        tab2.altair_chart(heatmap, theme=None, use_container_width=True)
 
         #---
         source = df_ebird.groupby("date",as_index=False).size()
@@ -96,7 +96,7 @@ try:
         # the shape of a hexagon
         hexagon = "M0,-2.3094010768L2,-1.1547005384 2,1.1547005384 0,2.3094010768 -2,1.1547005384 -2,-1.1547005384Z"
         
-        alt.Chart(source).mark_point(size=size**2, shape=hexagon).encode(
+        hexbin = alt.Chart(source).mark_point(size=size**2, shape=hexagon).encode(
             x=alt.X('xFeaturePos:Q', axis=alt.Axis(title='Month',
                                                    grid=False, tickOpacity=0, domainOpacity=0)),
             y=alt.Y('day(' + yField + '):O', axis=alt.Axis(title='Weekday',
@@ -115,7 +115,8 @@ try:
         ).configure_view(
             strokeWidth=0
         )
-        
+
+        tab3.altair_chart(hexbin, theme=None, use_container_width=True)
     
     with col2:
         st.map(data=df_ebird, latitude="lat", longitude="lng", color=None, size=None, zoom=None, use_container_width=True)
