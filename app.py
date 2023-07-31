@@ -58,136 +58,133 @@ try:
     df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
     df_ebird = df_ebird[COLUMNS]
 
-    try:
-        SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"], max_selections=None, placeholder="Choose an option")
+    
+    SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"], max_selections=None, placeholder="Choose an option")
 
-        df_filter = df_ebird[df_ebird["comName"].isin(SPECIES)]
-        
-        if selected2 == "Home":
-            tab1, tab2, tab3, tab4  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4"])
-            import altair as alt
-            NUMBER = tab1.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
-        
-            source = df_filter.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index().loc[:NUMBER]
-            
-            bar_chart = alt.Chart(source).mark_bar().encode(
-                x=alt.X(field='size', title="Number of observations"),
-                y=alt.Y('comName',title="", sort="ascending", ),
-            )
-            
-            tab1.altair_chart(bar_chart, theme=None, use_container_width=True)
-    
-            #---
-            source = df_filter.groupby("date",as_index=False).size()
-    
-            heatmap = alt.Chart(source, title="Daily Max Temperatures (C) in Seattle, WA").mark_rect().encode(
-                x=alt.X("date(date):O", title="Day", axis=alt.Axis(format="%e", labelAngle=0)),
-                y=alt.Y("month(date):O", title="Month"),
-                color=alt.Color("sum(size)", legend=alt.Legend(title=None)),
-                tooltip=[
-                    alt.Tooltip("monthdate(date)", title="Date"),
-                    alt.Tooltip("max(size)", title="Summ of number of observations"),
-                ],
-            ).configure_view(step=13, strokeWidth=0).configure_axis(domain=False)
-    
-            tab2.altair_chart(heatmap, theme=None, use_container_width=True)
-    
-            #---
-            source = df_filter.groupby("date",as_index=False).size()
-    
-            # Size of the hexbins
-            size = 15
-            # Count of distinct x features
-            xFeaturesCount = 12
-            # Count of distinct y features
-            yFeaturesCount = 7
-            # Name of the x field
-            xField = 'date'
-            # Name of the y field
-            yField = 'date'
-            
-            # the shape of a hexagon
-            hexagon = "M0,-2.3094010768L2,-1.1547005384 2,1.1547005384 0,2.3094010768 -2,1.1547005384 -2,-1.1547005384Z"
-            
-            hexbin = alt.Chart(source).mark_point(size=size**2, shape=hexagon).encode(
-                x=alt.X('xFeaturePos:Q', axis=alt.Axis(title='Month',
-                                                       grid=False, tickOpacity=0, domainOpacity=0)),
-                y=alt.Y('day(' + yField + '):O', axis=alt.Axis(title='Weekday',
-                                                               labelPadding=20, tickOpacity=0, domainOpacity=0)),
-                stroke=alt.value('black'),
-                strokeWidth=alt.value(0.2),
-                fill=alt.Color('sum(size):Q', scale=alt.Scale(scheme='darkblue')),
-                tooltip=['month(' + xField + '):O', 'day(' + yField + '):O', 'sum(size):Q']
-            ).transform_calculate(
-                # This field is required for the hexagonal X-Offset
-                xFeaturePos='(day(datum.' + yField + ') % 2) / 2 + month(datum.' + xField + ')'
-            ).properties(
-                # Exact scaling factors to make the hexbins fit
-                width=size * xFeaturesCount * 2,
-                height=size * yFeaturesCount * 1.7320508076,  # 1.7320508076 is approx. sin(60°)*2
-            ).configure_view(
-                strokeWidth=0
-            )
-    
-            tab3.altair_chart(hexbin, theme=None, use_container_width=True)
-    
-            #---
-            source = df_filter.groupby("date",as_index=False).size()
-    
-            bar = alt.Chart(source).mark_bar().encode(
-                x='date:T',
-                y='size:Q'
-            )
-            
-            rule = alt.Chart(source).mark_rule(color='red').encode(
-                y='mean(size):Q'
-            )
-            
-            tab4.altair_chart((bar + rule), theme=None, use_container_width=True)
-        
-        elif selected2 == "Upload":
-            ICON_URL = "https://cdn4.iconfinder.com/data/icons/twitter-29/512/157_Twitter_Location_Map-1024.png"
+    df_filter = df_ebird[df_ebird["comName"].isin(SPECIES)]
 
-            icon_data = {
-                # Icon from Wikimedia, used the Creative Commons Attribution-Share Alike 3.0
-                # Unported, 2.5 Generic, 2.0 Generic and 1.0 Generic licenses
-                "url": ICON_URL,
-                "width": 242,
-                "height": 242,
-                "anchorY": 242,
-            }
-            
-            data = df_filter
-            data["icon_data"] = None
-            for i in data.index:
-                data["icon_data"][i] = icon_data
-            
-            # Set the viewport location
-            view_state = pdk.ViewState(
-                longitude=4.885, latitude=52.367, zoom=10.76, min_zoom=1, max_zoom=20, pitch=0, bearing=0,
-            )
-            
-            icon_layer = pdk.Layer(
-                type="IconLayer",
-                data=data,
-                get_icon="icon_data",
-            #     get_size="N_species",
-                size_scale=40,
-                get_position=['lng', 'lat'],
-                pickable=True,
-            )
-            
-            r = pdk.Deck(layers=[icon_layer], initial_view_state=view_state, 
-                         tooltip={"text": "Species: {comName}"},
-                        api_keys={"mapbox":"pk.eyJ1IjoiamVnZ2lubyIsImEiOiJjbDFlMTA3MmowMWV4M2h1Z2ZobWFmZDhvIn0.OYXDSrOZ5vWheUZ1nFSB_Q"},
-                        map_provider='mapbox',
-                        map_style ="mapbox://styles/jeggino/clieqivbp005e01pggw0e5zxh")
-
-            st.pydeck_chart(pydeck_obj=r, use_container_width=True)
-            
-    except:
+    if len(df_filter) == 0:
         st.sidebar.warning('Select a species', icon="⚠️")
         st.stop()
+        
+    if selected2 == "Home":
+        tab1, tab2, tab3, tab4  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4"])
+        import altair as alt
+        NUMBER = tab1.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
+    
+        source = df_filter.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index().loc[:NUMBER]
+        
+        bar_chart = alt.Chart(source).mark_bar().encode(
+            x=alt.X(field='size', title="Number of observations"),
+            y=alt.Y('comName',title="", sort="ascending", ),
+        )
+        
+        tab1.altair_chart(bar_chart, theme=None, use_container_width=True)
 
+        #---
+        source = df_filter.groupby("date",as_index=False).size()
+
+        heatmap = alt.Chart(source, title="Daily Max Temperatures (C) in Seattle, WA").mark_rect().encode(
+            x=alt.X("date(date):O", title="Day", axis=alt.Axis(format="%e", labelAngle=0)),
+            y=alt.Y("month(date):O", title="Month"),
+            color=alt.Color("sum(size)", legend=alt.Legend(title=None)),
+            tooltip=[
+                alt.Tooltip("monthdate(date)", title="Date"),
+                alt.Tooltip("max(size)", title="Summ of number of observations"),
+            ],
+        ).configure_view(step=13, strokeWidth=0).configure_axis(domain=False)
+
+        tab2.altair_chart(heatmap, theme=None, use_container_width=True)
+
+        #---
+        source = df_filter.groupby("date",as_index=False).size()
+
+        # Size of the hexbins
+        size = 15
+        # Count of distinct x features
+        xFeaturesCount = 12
+        # Count of distinct y features
+        yFeaturesCount = 7
+        # Name of the x field
+        xField = 'date'
+        # Name of the y field
+        yField = 'date'
+        
+        # the shape of a hexagon
+        hexagon = "M0,-2.3094010768L2,-1.1547005384 2,1.1547005384 0,2.3094010768 -2,1.1547005384 -2,-1.1547005384Z"
+        
+        hexbin = alt.Chart(source).mark_point(size=size**2, shape=hexagon).encode(
+            x=alt.X('xFeaturePos:Q', axis=alt.Axis(title='Month',
+                                                   grid=False, tickOpacity=0, domainOpacity=0)),
+            y=alt.Y('day(' + yField + '):O', axis=alt.Axis(title='Weekday',
+                                                           labelPadding=20, tickOpacity=0, domainOpacity=0)),
+            stroke=alt.value('black'),
+            strokeWidth=alt.value(0.2),
+            fill=alt.Color('sum(size):Q', scale=alt.Scale(scheme='darkblue')),
+            tooltip=['month(' + xField + '):O', 'day(' + yField + '):O', 'sum(size):Q']
+        ).transform_calculate(
+            # This field is required for the hexagonal X-Offset
+            xFeaturePos='(day(datum.' + yField + ') % 2) / 2 + month(datum.' + xField + ')'
+        ).properties(
+            # Exact scaling factors to make the hexbins fit
+            width=size * xFeaturesCount * 2,
+            height=size * yFeaturesCount * 1.7320508076,  # 1.7320508076 is approx. sin(60°)*2
+        ).configure_view(
+            strokeWidth=0
+        )
+
+        tab3.altair_chart(hexbin, theme=None, use_container_width=True)
+
+        #---
+        source = df_filter.groupby("date",as_index=False).size()
+
+        bar = alt.Chart(source).mark_bar().encode(
+            x='date:T',
+            y='size:Q'
+        )
+        
+        rule = alt.Chart(source).mark_rule(color='red').encode(
+            y='mean(size):Q'
+        )
+        
+        tab4.altair_chart((bar + rule), theme=None, use_container_width=True)
+    
+    elif selected2 == "Upload":
+        ICON_URL = "https://cdn4.iconfinder.com/data/icons/twitter-29/512/157_Twitter_Location_Map-1024.png"
+
+        icon_data = {
+            "url": ICON_URL,
+            "width": 242,
+            "height": 242,
+            "anchorY": 242,
+        }
+        
+        data = df_filter
+        data["icon_data"] = None
+        for i in data.index:
+            data["icon_data"][i] = icon_data
+        
+        # Set the viewport location
+        view_state = pdk.ViewState(
+            longitude=4.885, latitude=52.367, zoom=10.76, min_zoom=1, max_zoom=20, pitch=0, bearing=0,
+        )
+        
+        icon_layer = pdk.Layer(
+            type="IconLayer",
+            data=data,
+            get_icon="icon_data",
+            size_scale=40,
+            get_position=['lng', 'lat'],
+            pickable=True,
+        )
+        
+        r = pdk.Deck(layers=[icon_layer], initial_view_state=view_state, 
+                     tooltip={"text": "Species: {comName}"},
+                    api_keys={"mapbox":"pk.eyJ1IjoiamVnZ2lubyIsImEiOiJjbDFlMTA3MmowMWV4M2h1Z2ZobWFmZDhvIn0.OYXDSrOZ5vWheUZ1nFSB_Q"},
+                    map_provider='mapbox',
+                    map_style ="mapbox://styles/jeggino/clieqivbp005e01pggw0e5zxh")
+
+        st.pydeck_chart(pydeck_obj=r, use_container_width=True)
+                    
 except:
     st.error('Sorry, no data', icon="🚨")
