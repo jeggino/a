@@ -57,8 +57,8 @@ try:
         source = df_ebird.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index().loc[:NUMBER]
         
         bar_chart = alt.Chart(source).mark_bar().encode(
-            x=alt.X(field='size', sort="ascending", title="Number of observations"),
-            y=alt.Y('comName',title=""),
+            x=alt.X(field='size', title="Number of observations"),
+            y=alt.Y('comName',title="", sort="ascending", ),
         )
         
         st.altair_chart(bar_chart, theme=None, use_container_width=True)
