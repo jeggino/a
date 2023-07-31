@@ -229,7 +229,7 @@ try:
                 pickable=True,
                 auto_highlight=True,
                 radius=2000,
-                get_fill_color="[(1 - comName / 500) * 255, 255, 0]",
+                get_fill_color="[(1 - comName / 500) * 255, 255, 100]",
             ),
         ]
         
