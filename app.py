@@ -253,8 +253,8 @@ try:
             gdf,
             pickable=True,
             extruded=True,
-            cell_size=2000,
-            elevation_scale=size_dict[SIZE],
+            cell_size=size_dict[SIZE],
+            elevation_scale=200,
             get_position=['lng', 'lat'],
         )
         
