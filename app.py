@@ -205,7 +205,7 @@ try:
         df = gdf.dissolve(by='subId',aggfunc={"comName":'count'},as_index=False)
         
                 
-        view_state = pdk.ViewState(latitude=51.47, longitude=0.45, zoom=1, min_zoom=1)
+        view_state = pdk.ViewState(latitude=51.47, longitude=0.45, zoom=1, min_zoom=1, bearing=0, pitch=45)
         
         # Set height and width variables
         view = pdk.View(type="_GlobeView", controller=True, width=1000, height=700)
