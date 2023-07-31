@@ -198,7 +198,7 @@ try:
         df_world = df_filter
         df_world['Coordinates'] = list(zip(df_world.lng, df_world.lat))
         df_world['Coordinates'] = df_world['Coordinates'].apply(Point)
-        gdf = geopandas.GeoDataFrame(df_world, geometry='Coordinates')
+        gdf = gpd.GeoDataFrame(df_world, geometry='Coordinates')
         df = gdf.dissolve(by='subId',aggfunc={"comName":'count'},as_index=False)
         
                 
