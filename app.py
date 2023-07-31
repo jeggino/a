@@ -119,7 +119,7 @@ try:
         tab3.altair_chart(hexbin, theme=None, use_container_width=True)
 
         #---
-        source = df_updated.groupby("date",as_index=False).size()
+        source = df_ebird.groupby("date",as_index=False).size()
 
         bar = alt.Chart(source).mark_bar().encode(
             x='date:T',
