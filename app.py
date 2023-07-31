@@ -186,6 +186,54 @@ try:
                     )
 
         st.pydeck_chart(pydeck_obj=r, use_container_width=True)
+
+        #---
+        import geopandas as gpd
+
+        COUNTRIES = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_scale_rank.geojson"
+        df = gdf.dissolve(by='subId',aggfunc={"comName":'count'},as_index=False)
+        
+                
+        view_state = pdk.ViewState(latitude=51.47, longitude=0.45, zoom=1, min_zoom=1)
+        
+        # Set height and width variables
+        view = pdk.View(type="_GlobeView", controller=True, width=1000, height=700)
+        
+        
+        layers = [
+            pdk.Layer(
+                "GeoJsonLayer",
+                id="base-map",
+                data=COUNTRIES,
+                stroked=True,
+                filled=True,
+                get_fill_color=[200, 200, 200],
+            ),
+            pdk.Layer(
+                "ColumnLayer",
+                data=df,
+                get_elevation="comName",
+                get_position="geometry.coordinates",
+                elevation_scale=100,
+                pickable=True,
+                auto_highlight=True,
+                radius=2000,
+                # get_fill_color="color",
+            ),
+        ]
+        
+        deck = pdk.Deck(
+            views=[view],
+            initial_view_state=view_state,
+            tooltip={"text": "SubId: {subId}, Number of observations: {count}"},
+            layers=layers,
+            map_provider=None,
+            # Note that this must be set for the globe to be opaque
+            parameters={"cull": True},
+        )
+
+        st.pydeck_chart(pydeck_obj=deck, use_container_width=True)
+        
                     
 except:
     st.error('Sorry, no data', icon="🚨")
