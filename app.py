@@ -226,14 +226,14 @@ try:
                 pickable=True,
                 auto_highlight=True,
                 radius=2000,
-                fill_color="d36582",
+                get_fill_color="[255, (1 - comName / 500) * 255, 0]",
             ),
         ]
         
         deck = pdk.Deck(
             views=[view],
             initial_view_state=view_state,
-            tooltip={"text": "SubId: {subId}, Number of observations: {count}"},
+            tooltip={"text": "SubId: {subId}, Number of observations: {comName}"},
             layers=layers,
             map_provider=None,
             # Note that this must be set for the globe to be opaque
