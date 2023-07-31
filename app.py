@@ -51,6 +51,7 @@ try:
     col1, col2 = st.columns([2,3])
     
     with col1:
+        tab1, tab2  = st.tabs(["Chart 1", "Chart 2"])
         import altair as alt
         NUMBER = st.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
     
@@ -61,7 +62,22 @@ try:
             y=alt.Y('comName',title="", sort="ascending", ),
         )
         
-        st.altair_chart(bar_chart, theme=None, use_container_width=True)
+        tab1.altair_chart(bar_chart, theme=None, use_container_width=True)
+
+        #---
+        source = df_ebird.groupby("date",as_index=False).size()
+
+        heatmap_chart - alt.Chart(source, title="Daily Max Temperatures (C) in Seattle, WA").mark_rect().encode(
+            x=alt.X("date(date):O", title="Day", axis=alt.Axis(format="%e", labelAngle=0)),
+            y=alt.Y("month(date):O", title="Month"),
+            color=alt.Color("sum(size)", legend=alt.Legend(title=None)),
+            tooltip=[
+                alt.Tooltip("monthdate(date)", title="Date"),
+                alt.Tooltip("max(size)", title="Summ of number of observations"),
+            ],
+        ).configure_view(step=13, strokeWidth=0).configure_axis(domain=False)
+
+        tab2.altair_chart(heatmap_chart, theme=None, use_container_width=True)
         
     
     with col2:
