@@ -189,8 +189,14 @@ try:
 
         #---
         import geopandas as gpd
+        from shapely.geometry import Point
+
 
         COUNTRIES = "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_scale_rank.geojson"
+        df_world = df_filter
+        df_world['Coordinates'] = list(zip(df_world.lng, df_world.lat))
+        df_world['Coordinates'] = df_world['Coordinates'].apply(Point)
+        gdf = geopandas.GeoDataFrame(df_world, geometry='Coordinates')
         df = gdf.dissolve(by='subId',aggfunc={"comName":'count'},as_index=False)
         
                 
