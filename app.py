@@ -251,17 +251,17 @@ try:
             df_filter,
             pickable=True,
             extruded=True,
-            cell_size=200,
-            elevation_scale=20,
+            cell_size=2000,
+            elevation_scale=200,
             get_position=['lng', 'lat'],
         )
         
-        view_state = pdk.ViewState(latitude=37.7749295, longitude=-122.4194155, zoom=11, bearing=0, pitch=45)
+        # view_state = pdk.ViewState(latitude=37.7749295, longitude=-122.4194155, zoom=11, bearing=0, pitch=45)
         
         # Render
         r = pdk.Deck(
             layers=[layer],
-            initial_view_state=view_state,
+            # initial_view_state=view_state,
             tooltip={"text": "Number of observations: {count}"},
         )
 
