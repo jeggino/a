@@ -3,4 +3,4 @@ pandas
 ebird-api
 requests
 lxml 
-streamlit_option_menu
+streamlit-option-menu
