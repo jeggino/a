@@ -40,13 +40,16 @@ try:
     records = get_observations(API_KEY, b,back=BACK)
 
 except:
+    
     st.stop()
 
 try:
     df_ebird = pd.DataFrame(records)
     df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
     df_ebird = df_ebird[COLUMNS]
-    
+    progress_text = "Operation in progress. Please wait."
+    st.progress(10, text=progress_text)
+
     col1, col2 = st.columns([2,3])
     
     with col1:
