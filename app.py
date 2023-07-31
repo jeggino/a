@@ -172,7 +172,7 @@ try:
                 data=data,
                 get_icon="icon_data",
             #     get_size="N_species",
-                size_scale=20,
+                size_scale=40,
                 get_position=['lng', 'lat'],
                 pickable=True,
             )
