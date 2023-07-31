@@ -246,7 +246,7 @@ try:
         map2.pydeck_chart(pydeck_obj=deck, use_container_width=True)
 
         #---
-        SIZE = st.select_slider( 'Select cell size',options=['small', 'medium', 'big',])
+        SIZE = map3.select_slider( 'Select cell size',options=['small', 'medium', 'big',])
         size_dict = {"small":2000,"medium":20000,"big":100000}
         layer = pdk.Layer(
             "GridLayer",
