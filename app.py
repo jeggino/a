@@ -146,7 +146,7 @@ try:
             tab4.altair_chart((bar + rule), theme=None, use_container_width=True)
         
         elif selected2 == "Upload":
-            ICON_URL = "https://cdn0.iconfinder.com/data/icons/essentials-solid-glyphs-vol-1/100/Location-Pin-Map-1024.png"
+            ICON_URL = "https://cdn4.iconfinder.com/data/icons/twitter-29/512/157_Twitter_Location_Map-1024.png"
 
             icon_data = {
                 # Icon from Wikimedia, used the Creative Commons Attribution-Share Alike 3.0
