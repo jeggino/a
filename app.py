@@ -228,8 +228,8 @@ try:
                 elevation_scale=10000,
                 pickable=True,
                 auto_highlight=True,
-                radius=2000,
-                get_fill_color="[255, (1 - comName / 500) * 255, 0]",
+                radius=20000,
+                get_fill_color="[(1 - comName / 500) * 255, 255, 0]",
             ),
         ]
         
