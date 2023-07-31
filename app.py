@@ -248,12 +248,12 @@ try:
         #---
         layer = pdk.Layer(
             "GridLayer",
-            df,
+            df_filter,
             pickable=True,
             extruded=True,
             cell_size=200,
             elevation_scale=20,
-            get_position="geometry.coordinates",
+            get_position=['lng', 'lat'],
         )
         
         view_state = pdk.ViewState(latitude=37.7749295, longitude=-122.4194155, zoom=11, bearing=0, pitch=45)
