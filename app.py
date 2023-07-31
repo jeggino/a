@@ -246,13 +246,15 @@ try:
         map2.pydeck_chart(pydeck_obj=deck, use_container_width=True)
 
         #---
+        SIZE = st.select_slider( 'Select cell size',options=['small', 'medium', 'big',])
+        size_dict = {"small":2000,"medium":20000,"big":100000}
         layer = pdk.Layer(
             "GridLayer",
             gdf,
             pickable=True,
             extruded=True,
             cell_size=2000,
-            elevation_scale=200,
+            elevation_scale=size_dict[SIZE],
             get_position=['lng', 'lat'],
         )
         
