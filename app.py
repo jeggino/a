@@ -53,7 +53,7 @@ try:
     with col1:
         tab1, tab2  = st.tabs(["Chart 1", "Chart 2"])
         import altair as alt
-        NUMBER = st.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
+        NUMBER = tab1.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
     
         source = df_ebird.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index().loc[:NUMBER]
         
