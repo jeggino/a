@@ -248,7 +248,7 @@ try:
         #---
         layer = pdk.Layer(
             "GridLayer",
-            df_filter,
+            gdf,
             pickable=True,
             extruded=True,
             cell_size=2000,
