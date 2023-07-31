@@ -152,6 +152,9 @@ try:
         tab4.altair_chart((bar + rule), theme=None, use_container_width=True)
     
     elif selected2 == "Upload":
+
+        map1, map2, map3, map4  = st.tabs(["Map 1", "Map 2", "Map 3", "Map 4"])
+        
         ICON_URL = "https://cdn4.iconfinder.com/data/icons/twitter-29/512/157_Twitter_Location_Map-1024.png"
 
         icon_data = {
@@ -187,7 +190,7 @@ try:
                     # map_style ="mapbox://styles/jeggino/clieqivbp005e01pggw0e5zxh"
                     )
 
-        st.pydeck_chart(pydeck_obj=r, use_container_width=True)
+        map1.pydeck_chart(pydeck_obj=r, use_container_width=True)
 
         #---
         import geopandas as gpd
@@ -240,7 +243,7 @@ try:
             parameters={"cull": True},
         )
 
-        st.pydeck_chart(pydeck_obj=deck, use_container_width=True)
+        map2.pydeck_chart(pydeck_obj=deck, use_container_width=True)
         
                     
 except:
