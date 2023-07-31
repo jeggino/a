@@ -226,7 +226,7 @@ try:
                 pickable=True,
                 auto_highlight=True,
                 radius=2000,
-                # get_fill_color="color",
+                fill_color="d36582",
             ),
         ]
         
