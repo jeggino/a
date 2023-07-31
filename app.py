@@ -144,11 +144,47 @@ try:
             tab4.altair_chart((bar + rule), theme=None, use_container_width=True)
         
         elif selected2 == "Upload":
-            st.map(data=df_filter, latitude="lat", longitude="lng", color=None, size=None, zoom=None, use_container_width=True)
+            ICON_URL = "https://cdn0.iconfinder.com/data/icons/essentials-solid-glyphs-vol-1/100/Location-Pin-Map-1024.png"
 
-    except:
-        st.sidebar.warning('Select a species', icon="⚠️")
-        st.stop()
+            icon_data = {
+                # Icon from Wikimedia, used the Creative Commons Attribution-Share Alike 3.0
+                # Unported, 2.5 Generic, 2.0 Generic and 1.0 Generic licenses
+                "url": ICON_URL,
+                "width": 242,
+                "height": 242,
+                "anchorY": 242,
+            }
+            
+            data = df_filter
+            data["icon_data"] = None
+            for i in data.index:
+                data["icon_data"][i] = icon_data
+            
+            # Set the viewport location
+            view_state = pdk.ViewState(
+                longitude=4.885, latitude=52.367, zoom=10.76, min_zoom=1, max_zoom=20, pitch=0, bearing=0,
+            )
+            
+            icon_layer = pdk.Layer(
+                type="IconLayer",
+                data=data,
+                get_icon="icon_data",
+            #     get_size="N_species",
+                size_scale=20,
+                get_position="['lng', 'lat']",
+                pickable=True,
+            )
+            
+            r = pdk.Deck(layers=[icon_layer], initial_view_state=view_state, 
+                         tooltip={"text": "Species: {comName}"},
+                        api_keys={"mapbox":"pk.eyJ1IjoiamVnZ2lubyIsImEiOiJjbDFlMTA3MmowMWV4M2h1Z2ZobWFmZDhvIn0.OYXDSrOZ5vWheUZ1nFSB_Q"},
+                        map_provider='mapbox',
+                        map_style ="mapbox://styles/jeggino/clieqivbp005e01pggw0e5zxh")
+                        st.map(data=df_filter, latitude="lat", longitude="lng", color=None, size=None, zoom=None, use_container_width=True)
+            
+                except:
+                    st.sidebar.warning('Select a species', icon="⚠️")
+                    st.stop()
         
 except:
     st.error('Sorry, no data', icon="🚨")
