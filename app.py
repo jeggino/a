@@ -180,7 +180,7 @@ try:
 
         bar_country = alt.Chart(df_country).mark_bar().encode(
             y='size:Q',
-            x=alt.X('comName:N').sort('-Y'),
+            x=alt.X('comName:N').sort('-y'),
             facet=alt.Facet('country:N', columns=2)
         )
 
