@@ -64,6 +64,7 @@ try:
 
     import geocoder
 
+    @st.cache_resource
     def geo_rev(x):
         g = geocoder.osm([x.lat, x.lng], method='reverse').json
         if g:
