@@ -43,7 +43,7 @@ list_ = {}
 for index, column in df_code.iterrows():
     list_[column["Country name"]] = column["ISO 3166 code"]
 
-COUNTRIES = st.sidebar.multiselect("Select one o more countries", df_code["Country name"], max_selections=10, placeholder="Choose an option")
+COUNTRIES = st.sidebar.multiselect("Select one o more countries", df_code["Country name"].unique(), max_selections=10, placeholder="Choose an option")
 
 
 try:
@@ -72,7 +72,7 @@ try:
     
     # df_ebird['country'] = country
 
-    SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"], max_selections=None, placeholder="Choose an option")
+    SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"].unique(), max_selections=None, placeholder="Choose an option")
 
     st.sidebar.divider()
 
