@@ -5,7 +5,7 @@ import requests
 from streamlit_option_menu import option_menu
 import pydeck as pdk
 from shapely.geometry import Point
-from geopy.geocoders import Nominatim
+
 
 
 
@@ -62,20 +62,18 @@ try:
     df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
     df_ebird = df_ebird[COLUMNS]
 
-    geolocator = Nominatim(user_agent="ebird")
-    country = []
-    n=0
-    for index, column in df_ebird.iterrows():
-        try:
-            n+=1
-            location = geolocator.reverse(str(column["lat"])+","+str(column["lng"]))
-            address = location.raw['address']
-            country.append(address.get('country', ''))
-        except:
-            st.write(n)
-            continue
+    import geocoder
+
+    def geo_rev(x):
+        g = geocoder.osm([x.lat, x.lng], method='reverse').json
+        if g:
+            return g.get('country')
+        else:
+            return 'no country'
     
-    # df_ebird['country'] = country
+    df_ebird[['lat', 'lng']].apply(geo_rev, axis=1)
+
+    st.dataframe(df_ebird)
 
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"].unique(), max_selections=None, placeholder="Choose an option")
 
