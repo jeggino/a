@@ -37,9 +37,6 @@ selected2 = option_menu(None, ["Charts", "Maps"],
 
 URL = "http://fasteri.com/list/2/short-names-of-countries-and-iso-3166-codes"
 API_KEY = 'm37q4mkeq3fj'
-with st.sidebar:
-    result = date_range_picker("Select a date range")
-    st.write("Result:", result)
 BACK = 30
 COLUMNS = ['comName', 'date', 'lat', 'lng', 'locId', 'sciName', 'subId']
 
