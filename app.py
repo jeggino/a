@@ -64,7 +64,7 @@ try:
 
     geolocator = Nominatim(user_agent="geoapiExercises")
     country = []
-    for index, column in df_ebird.loc[:10].iterrows():
+    for index, column in df_ebird.iterrows():
         
         location = geolocator.reverse(str(column["lat"])+","+str(column["lng"]))
         address = location.raw['address']
@@ -72,7 +72,6 @@ try:
     
     df_ebird['country'] = country
 
-    
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"], max_selections=None, placeholder="Choose an option")
 
     df_filter = df_ebird[df_ebird["comName"].isin(SPECIES)]
