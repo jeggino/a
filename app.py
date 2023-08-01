@@ -184,7 +184,7 @@ try:
             facet=alt.Facet('country:N', columns=3)
         )
 
-        tab5.altair_chart(df_country, theme=None, use_container_width=True)
+        tab5.altair_chart(bar_country, theme=None, use_container_width=True)
 
     
     
