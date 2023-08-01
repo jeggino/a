@@ -66,7 +66,7 @@ try:
     country = []
     for index, column in df_ebird.iterrows():
         
-        location = geolocator.reverse(column["lat"]+","+column["lng"])
+        location = geolocator.reverse(str(column["lat"])+","+str(column["lng"]))
         address = location.raw['address']
         country.append(address.get('country', ''))
     
