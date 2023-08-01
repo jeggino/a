@@ -62,7 +62,7 @@ try:
     df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
     df_ebird = df_ebird[COLUMNS]
 
-    # geolocator = Nominatim(user_agent="geoapiExercises")
+    geolocator = Nominatim(user_agent="ebird")
     # country = []
     # for index, column in df_ebird.iterrows():
         
