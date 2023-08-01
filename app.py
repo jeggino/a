@@ -24,8 +24,8 @@ st.set_page_config(
     }
 )
 
-selected2 = option_menu(None, ["Charts", "Maps", "Tasks", 'Settings'], 
-    icons=['bi-bar-chart-fill', 'bi bi-map', "list-task", 'gear'], 
+selected2 = option_menu(None, ["Charts", "Maps"], 
+    icons=['bi-bar-chart-fill', 'bi bi-map'], 
     menu_icon="cast", default_index=0, orientation="horizontal")
 
 
@@ -66,7 +66,7 @@ try:
     country = []
     for index, column in df_ebird.iterrows():
         
-        location = geolocator.reverse(str(column["lat"])+","+str(column["lng"]))
+        location = geolocator.reverse(column["lat"]+","+column["lng"])
         address = location.raw['address']
         country.append(address.get('country', ''))
     
