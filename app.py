@@ -82,7 +82,7 @@ try:
     #---
     DATE = date_range_picker("Select a dade", default_start = df_ebird["date"].min(), default_end = df_ebird["date"].max(), 
                              min_date = df_ebird["date"].min(), max_date = df_ebird["date"].max(), 
-                             error_message: str = 'Please select start and end date')
+                             error_message = 'Please select start and end date')
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"].unique(), max_selections=None, placeholder="Choose an option")
 
     #---
