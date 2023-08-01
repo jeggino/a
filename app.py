@@ -80,7 +80,9 @@ try:
     df_ebird['country'] = df_ebird[['lat', 'lng']].apply(geo_rev, axis=1)        
 
     #---
-    DATE = date_range_picker("Select a dade", default_start: = None, default_end: = None, min_date: df_updated.date.min() = None, max_date = df_updated.date.max(), error_message: str = 'Please select start and end date', )
+    DATE = date_range_picker("Select a dade", default_start = df_ebird["date"].min(), default_end = df_ebird["date"].max(), 
+                             min_date = df_ebird["date"].min(), max_date = df_ebird["date"].max(), 
+                             error_message: str = 'Please select start and end date')
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"].unique(), max_selections=None, placeholder="Choose an option")
 
     #---
