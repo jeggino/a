@@ -62,15 +62,15 @@ try:
     df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
     df_ebird = df_ebird[COLUMNS]
 
-    geolocator = Nominatim(user_agent="geoapiExercises")
-    country = []
-    for index, column in df_ebird.iterrows():
+    # geolocator = Nominatim(user_agent="geoapiExercises")
+    # country = []
+    # for index, column in df_ebird.iterrows():
         
-        location = geolocator.reverse(column["lat"]+","+column["lng"])
-        address = location.raw['address']
-        country.append(address.get('country', ''))
+    #     location = geolocator.reverse(column["lat"]+","+column["lng"])
+    #     address = location.raw['address']
+    #     country.append(address.get('country', ''))
     
-    df_ebird['country'] = country
+    # df_ebird['country'] = country
 
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"], max_selections=None, placeholder="Choose an option")
 
