@@ -107,7 +107,7 @@ try:
         #---
         source = df_filter.groupby("date",as_index=False).size()
 
-        heatmap = alt.Chart(source, title="Daily Max Temperatures (C) in Seattle, WA").mark_rect().encode(
+        heatmap = alt.Chart(source, title="Number of obsevations per day").mark_rect().encode(
             x=alt.X("date(date):O", title="Day", axis=alt.Axis(format="%e", labelAngle=0)),
             y=alt.Y("month(date):O", title="Month"),
             color=alt.Color("sum(size)", legend=alt.Legend(title=None)),
