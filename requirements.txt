@@ -4,6 +4,7 @@ ebird-api
 requests
 lxml 
 streamlit-option-menu
+streamlit_extras
 geopandas
 shapely
 geocoder
