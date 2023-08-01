@@ -81,8 +81,8 @@ try:
         st.warning("ma che re...oooo")
         from datetime import datetime
 
-        date_1 = datetime.strptime(df_updated.date.min(), '%Y-%m-%d').date()
-        date_2 = datetime.strptime(df_updated.date.max(), '%Y-%m-%d').date()
+        date_1 = datetime.strptime(df_ebird.date.min(), '%Y-%m-%d').date()
+        date_2 = datetime.strptime(df_ebird.date.max(), '%Y-%m-%d').date()
         DATE = date_range_picker("Select a date range", default_start = date_1, default_end = date_2, 
                                  min_date = date_1, max_date = date_2, 
                                  error_message = 'Please select start and end date')
