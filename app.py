@@ -72,10 +72,7 @@ try:
         else:
             return 'no country'
     
-    df_ebird['country'] = df_ebird[['lat', 'lng']].apply(geo_rev, axis=1)
-
-    #---
-    st.dataframe(df_ebird)
+    df_ebird['country'] = df_ebird[['lat', 'lng']].apply(geo_rev, axis=1)        
 
     #---
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"].unique(), max_selections=None, placeholder="Choose an option")
