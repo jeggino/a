@@ -79,8 +79,12 @@ try:
     #---
     with st.sidebar:
         st.warning("ma che re...oooo")
-        DATE = date_range_picker("Select a dade", default_start = df_ebird["date"].min(), default_end = df_ebird["date"].max(), 
-                                 min_date = df_ebird["date"].min(), max_date = df_ebird["date"].max(), 
+        from datetime import datetime
+
+        date_1 = datetime.strptime(df_updated.date.min(), '%Y-%m-%d').date()
+        date_2 = datetime.strptime(df_updated.date.max(), '%Y-%m-%d').date()
+        DATE = date_range_picker("Select a date range", default_start = date_1, default_end = date_2, 
+                                 min_date = date_1, max_date = date_2, 
                                  error_message = 'Please select start and end date')
         SPECIES = st.multiselect("Select one o more species", df_ebird["comName"].unique(), max_selections=None, placeholder="Choose an option")
 
