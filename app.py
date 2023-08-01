@@ -179,9 +179,9 @@ try:
         df_country = df_filter.groupby(["country","comName"], as_index=False).size()
 
         bar_country = alt.Chart(df_country).mark_bar().encode(
-            x='size:Q',
-            y=alt.Y('comName:N').sort('-x'),
-            facet=alt.Facet('country:N', columns=3)
+            y='size:Q',
+            x=alt.X('comName:N').sort('-Y'),
+            facet=alt.Facet('country:N', columns=2)
         )
 
         tab5.altair_chart(bar_country, theme=None, use_container_width=True)
