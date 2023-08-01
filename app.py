@@ -5,7 +5,7 @@ import requests
 from streamlit_option_menu import option_menu
 import pydeck as pdk
 from shapely.geometry import Point
-from streamlit_extras.app_logo import add_logo
+from streamlit_extras.mandatory_date_range import date_range_picker
 import geocoder
 
 
@@ -38,6 +38,9 @@ selected2 = option_menu(None, ["Charts", "Maps"],
 
 URL = "http://fasteri.com/list/2/short-names-of-countries-and-iso-3166-codes"
 API_KEY = 'm37q4mkeq3fj'
+with st.sidebar:
+    result = date_range_picker("Select a date range")
+    st.write("Result:", result)
 BACK = st.sidebar.number_input("Number of days back", min_value=1, max_value=30, value=1, step=1,  label_visibility="visible")
 COLUMNS = ['comName', 'date', 'lat', 'lng', 'locId', 'sciName', 'subId']
 
