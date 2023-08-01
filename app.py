@@ -68,7 +68,7 @@ try:
         
         location = geolocator.reverse(str(column["lat"])+","+str(column["lng"]))
         address = location.raw['address']
-        country.append(address.get('country', ''))
+        # country.append(address.get('country', ''))
     
     # df_ebird['country'] = country
 
