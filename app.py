@@ -5,6 +5,9 @@ import requests
 from streamlit_option_menu import option_menu
 import pydeck as pdk
 from shapely.geometry import Point
+from streamlit_extras.app_logo import add_logo
+import geocoder
+
 
 
 
@@ -23,6 +26,8 @@ st.set_page_config(
         'About': "# This is a header. This is an *extremely* cool app!"
     }
 )
+
+add_logo("gallery/kitty.jpeg", height=200)
 
 selected2 = option_menu(None, ["Charts", "Maps"], 
     icons=['bi-bar-chart-fill', 'bi bi-map'], 
@@ -61,8 +66,6 @@ try:
     df_ebird = pd.DataFrame(records)
     df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
     df_ebird = df_ebird[COLUMNS]
-
-    import geocoder
 
     @st.cache_resource
     def geo_rev(x):
