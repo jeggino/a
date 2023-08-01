@@ -182,7 +182,7 @@ try:
             y='size:Q',
             x=alt.X('comName:N').sort('-y'),
             facet=alt.Facet('country:N', columns=2)
-        )
+        ).properties(width=200)
 
         tab5.altair_chart(bar_country, theme=None, use_container_width=True)
 
