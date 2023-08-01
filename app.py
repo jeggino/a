@@ -5,6 +5,8 @@ import requests
 from streamlit_option_menu import option_menu
 import pydeck as pdk
 from shapely.geometry import Point
+from geopy.geocoders import Nominatim
+
 
 
 
@@ -22,8 +24,8 @@ st.set_page_config(
     }
 )
 
-selected2 = option_menu(None, ["Home", "Upload", "Tasks", 'Settings'], 
-    icons=['house', 'cloud-upload', "list-task", 'gear'], 
+selected2 = option_menu(None, ["Charts", "Maps", "Tasks", 'Settings'], 
+    icons=['bi-bar-chart-fill', 'bi bi-map', "list-task", 'gear'], 
     menu_icon="cast", default_index=0, orientation="horizontal")
 
 
@@ -60,6 +62,16 @@ try:
     df_ebird['date'] = df_ebird.obsDt.str.split(" ",expand=True)[0]
     df_ebird = df_ebird[COLUMNS]
 
+    geolocator = Nominatim(user_agent="geoapiExercises")
+    country = []
+    for index, column in df_ebird.loc[:10].iterrows():
+        
+        location = geolocator.reverse(str(column["lat"])+","+str(column["lng"]))
+        address = location.raw['address']
+        country.append(address.get('country', ''))
+    
+    df_ebird['country'] = country
+
     
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"], max_selections=None, placeholder="Choose an option")
 
@@ -69,7 +81,7 @@ try:
         st.sidebar.warning('Select a species', icon="⚠️")
         st.stop()
         
-    if selected2 == "Home":
+    if selected2 == "Charts":
         tab1, tab2, tab3, tab4  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4"])
         import altair as alt
         NUMBER = tab1.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
@@ -151,7 +163,7 @@ try:
         
         tab4.altair_chart((bar + rule), theme=None, use_container_width=True)
     
-    elif selected2 == "Upload":
+    elif selected2 == "Maps":
 
         map1, map2, map3, map4  = st.tabs(["Map 1", "Map 2", "Map 3", "Map 4"])
         
