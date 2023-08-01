@@ -174,6 +174,19 @@ try:
         )
         
         tab4.altair_chart((bar + rule), theme=None, use_container_width=True)
+
+        #---
+        df_country = df_filter.groupby(["country","comName"], as_index=False).size()
+
+        bar_country = alt.Chart(df_country).mark_bar().encode(
+            x='size:Q',
+            y=alt.Y('comName:N').sort('-x'),
+            facet=alt.Facet('country:N', columns=3)
+        )
+
+        tab4.altair_chart(df_country, theme=None, use_container_width=True)
+
+    
     
     elif selected2 == "Maps":
 
