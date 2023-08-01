@@ -92,7 +92,7 @@ try:
         st.divider()
 
     #---
-    df_filter = df_ebird[(df_ebird["comName"].isin(SPECIES)) & (df_ebird["date"] >= DATE[0]) & (df_ebird["date"] <= DATE[1])]
+    df_filter = df_ebird[(df_ebird["comName"].isin(SPECIES)) & (df_ebird["date"] >= str(DATE[0])) & (df_ebird["date"] <= str(DATE[1]))]
 
     if len(df_filter) == 0:
         st.sidebar.warning('Select a species', icon="⚠️")
