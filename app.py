@@ -71,7 +71,7 @@ try:
         else:
             return 'no country'
     
-    df_ebird[['lat', 'lng']].apply(geo_rev, axis=1)
+    df_ebird['country'] = df_ebird[['lat', 'lng']].apply(geo_rev, axis=1)
 
     st.dataframe(df_ebird)
 
