@@ -72,8 +72,9 @@ try:
             address = location.raw['address']
             country.append(address.get('country', ''))
         except:
+            st.write(n)
             continue
-    st.write(n)
+    
     # df_ebird['country'] = country
 
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"].unique(), max_selections=None, placeholder="Choose an option")
