@@ -181,7 +181,7 @@ try:
             facet=alt.Facet('country:N', columns=2)
         ).properties(width=200)
 
-        tab5.altair_chart(bar_country, theme=None, use_container_width=True)
+        tab5.altair_chart(bar_country, theme="streamlit", use_container_width=True)
 
     
     
