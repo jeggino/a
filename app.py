@@ -64,14 +64,16 @@ try:
 
     geolocator = Nominatim(user_agent="ebird")
     country = []
+    n=0
     for index, column in df_ebird.iterrows():
-        
-        location = geolocator.reverse(str(column["lat"])+","+str(column["lng"]))
-        st.warning('This is a warning_1', icon="⚠️")
-        address = location.raw['address']
-        st.warning('This is a warning_2', icon="⚠️")
-        # country.append(address.get('country', ''))
-    
+        try:
+            n+=1
+            location = geolocator.reverse(str(column["lat"])+","+str(column["lng"]))
+            address = location.raw['address']
+            country.append(address.get('country', ''))
+        except:
+            continue
+    st.write(n)
     # df_ebird['country'] = country
 
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"].unique(), max_selections=None, placeholder="Choose an option")
