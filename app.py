@@ -40,7 +40,7 @@ API_KEY = 'm37q4mkeq3fj'
 with st.sidebar:
     result = date_range_picker("Select a date range")
     st.write("Result:", result)
-BACK = st.sidebar.number_input("Number of days back", min_value=1, max_value=30, value=1, step=1,  label_visibility="visible")
+BACK = 30
 COLUMNS = ['comName', 'date', 'lat', 'lng', 'locId', 'sciName', 'subId']
 
 
@@ -80,13 +80,14 @@ try:
     df_ebird['country'] = df_ebird[['lat', 'lng']].apply(geo_rev, axis=1)        
 
     #---
+    DATE = date_range_picker("Select a dade", default_start: = None, default_end: = None, min_date: df_updated.date.min() = None, max_date = df_updated.date.max(), error_message: str = 'Please select start and end date', )
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"].unique(), max_selections=None, placeholder="Choose an option")
 
     #---
     st.sidebar.divider()
 
     #---
-    df_filter = df_ebird[df_ebird["comName"].isin(SPECIES)]
+    df_filter = df_ebird[(df_ebird["comName"].isin(SPECIES)) & df_ebird[(df_ebird["date"] >= DATE[0]) & (df_ebird["date"] <= DATE[1])]]
 
     if len(df_filter) == 0:
         st.sidebar.warning('Select a species', icon="⚠️")
