@@ -74,18 +74,23 @@ try:
     
     df_ebird['country'] = df_ebird[['lat', 'lng']].apply(geo_rev, axis=1)
 
+    #---
     st.dataframe(df_ebird)
 
+    #---
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"].unique(), max_selections=None, placeholder="Choose an option")
 
+    #---
     st.sidebar.divider()
 
+    #---
     df_filter = df_ebird[df_ebird["comName"].isin(SPECIES)]
 
     if len(df_filter) == 0:
         st.sidebar.warning('Select a species', icon="⚠️")
         st.stop()
-        
+
+    #----
     if selected2 == "Charts":
         tab1, tab2, tab3, tab4  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4"])
         import altair as alt
