@@ -92,7 +92,7 @@ try:
 
     #----
     if selected2 == "Charts":
-        tab1, tab2, tab3, tab4  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4"])
+        tab1, tab2, tab3, tab4, tab5  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4", "Chart 5"])
         import altair as alt
 
         with st.sidebar:
@@ -184,7 +184,7 @@ try:
             facet=alt.Facet('country:N', columns=3)
         )
 
-        tab4.altair_chart(df_country, theme=None, use_container_width=True)
+        tab5.altair_chart(df_country, theme=None, use_container_width=True)
 
     
     
