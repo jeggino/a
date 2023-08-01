@@ -74,6 +74,8 @@ try:
 
     SPECIES = st.sidebar.multiselect("Select one o more species", df_ebird["comName"], max_selections=None, placeholder="Choose an option")
 
+    st.sidebar.divider()
+
     df_filter = df_ebird[df_ebird["comName"].isin(SPECIES)]
 
     if len(df_filter) == 0:
