@@ -78,7 +78,7 @@ try:
 
     #---
     with st.sidebar:
-        
+        st.warning("ma che re...oooo")
         DATE = date_range_picker("Select a dade", default_start = df_ebird["date"].min(), default_end = df_ebird["date"].max(), 
                                  min_date = df_ebird["date"].min(), max_date = df_ebird["date"].max(), 
                                  error_message = 'Please select start and end date')
