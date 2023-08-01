@@ -63,12 +63,12 @@ try:
     df_ebird = df_ebird[COLUMNS]
 
     geolocator = Nominatim(user_agent="ebird")
-    # country = []
-    # for index, column in df_ebird.iterrows():
+    country = []
+    for index, column in df_ebird.iterrows():
         
-    #     location = geolocator.reverse(column["lat"]+","+column["lng"])
-    #     address = location.raw['address']
-    #     country.append(address.get('country', ''))
+        location = geolocator.reverse(column["lat"]+","+column["lng"])
+        address = location.raw['address']
+        country.append(address.get('country', ''))
     
     # df_ebird['country'] = country
 
