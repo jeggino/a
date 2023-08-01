@@ -6,4 +6,4 @@ lxml
 streamlit-option-menu
 geopandas
 shapely
-geopy
+geocoder
