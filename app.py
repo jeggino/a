@@ -27,7 +27,6 @@ st.set_page_config(
     }
 )
 
-add_logo("https://github.com/jeggino/eBird/blob/3461878c1bd34e77965e803e489daaf7e1156f3a/Screenshot%202023-08-01%20150601.jpg", height=200)
 
 selected2 = option_menu(None, ["Charts", "Maps"], 
     icons=['bi-bar-chart-fill', 'bi bi-map'], 
