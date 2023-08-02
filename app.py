@@ -7,6 +7,7 @@ import pydeck as pdk
 from shapely.geometry import Point
 from streamlit_extras.mandatory_date_range import date_range_picker
 import geocoder
+import wikipedia
 
 
 
@@ -135,7 +136,6 @@ try:
 
         tab2.altair_chart(heatmap, theme=None, use_container_width=True)
 
-        tab2.markdown('https://en.wikipedia.org/wiki/White_wagtail',unsafe_allow_html=True)
 
         #---
         source = df_filter.groupby("date",as_index=False).size()
@@ -222,6 +222,14 @@ try:
             },
             hide_index=True,
         )
+        TEXT = f"""
+        {SPECIES}
+        
+        {wikipedia.summary(SPECIES)}
+        
+        link wiki: {wikipedia.page(SPECIES).url}
+        """
+        tab6.markdown(TEXT,unsafe_allow_html=True)
 
     
     
