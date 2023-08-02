@@ -222,13 +222,13 @@ try:
             },
             hide_index=True,
         )
-        st.write(SPECIES)
+        st.write(SPECIES[0])
         TEXT = f"""
-        {SPECIES}
+        SPECIES[0]}
         
-        {wikipedia.summary(SPECIES)}
+        {wikipedia.summary(SPECIES[0])}
         
-        link wiki: {wikipedia.page(SPECIES).url}
+        link wiki: {wikipedia.page(SPECIES[0]).url}
         """
         tab6.markdown(TEXT,unsafe_allow_html=True)
 
