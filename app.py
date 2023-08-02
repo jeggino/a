@@ -108,7 +108,7 @@ try:
 
     #----
     if selected2 == "Charts":
-        tab1, tab2, tab3, tab4, tab5  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4", "Chart 5"])
+        tab1, tab2, tab3, tab4, tab5, tab6  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4", "Chart 5", "Tab 1"])
         import altair as alt
 
         source = df_filter.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index()
@@ -198,6 +198,27 @@ try:
         ).properties(width=200)
 
         tab5.altair_chart(bar_country, theme=None, use_container_width=True)
+
+    #---
+    data_df = pd.DataFrame(
+        {
+            "sales": [200, 550, 1000, 80],
+        }
+    )
+    
+    tab6.data_editor(
+        data_df,
+        column_config={
+            "sales": st.column_config.ProgressColumn(
+                "Sales volume",
+                help="The sales volume in USD",
+                format="$%f",
+                min_value=0,
+                max_value=1000,
+            ),
+        },
+        hide_index=True,
+    )
 
     
     
