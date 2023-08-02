@@ -264,7 +264,7 @@ try:
         )
         
         r = pdk.Deck(layers=[icon_layer], initial_view_state=view_state, 
-                     tooltip={"text": "Species: {comName}"},
+                     tooltip={"text": "Species: {comName} n\Date: {date}"},
                     # api_keys={"mapbox":"pk.eyJ1IjoiamVnZ2lubyIsImEiOiJjbDFlMTA3MmowMWV4M2h1Z2ZobWFmZDhvIn0.OYXDSrOZ5vWheUZ1nFSB_Q"},
                     # map_provider='mapbox',
                     # map_style ="mapbox://styles/jeggino/clieqivbp005e01pggw0e5zxh"
