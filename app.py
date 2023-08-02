@@ -135,7 +135,7 @@ try:
 
         tab2.altair_chart(heatmap, theme=None, use_container_width=True)
 
-        tab2.markdown('https://en.wikipedia.org/wiki/White_wagtail')
+        tab2.markdown('https://en.wikipedia.org/wiki/White_wagtail',unsafe_allow_html=True)
 
         #---
         source = df_filter.groupby("date",as_index=False).size()
