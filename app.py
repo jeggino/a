@@ -109,7 +109,7 @@ try:
 
     #----
     if selected2 == "Charts":
-        tab1, tab2, tab3, tab4, tab5, tab6  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4", "Chart 5", "Tab 1"])
+        tab1, tab2, tab3, tab4, tab5, tab6, tab7  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4", "Chart 5", "Tab 1", "Info species"])
         import altair as alt
 
         source = df_filter.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index()
