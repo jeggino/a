@@ -222,6 +222,7 @@ try:
             },
             hide_index=True,
         )
+        st.write(SPECIES)
         TEXT = f"""
         {SPECIES}
         
