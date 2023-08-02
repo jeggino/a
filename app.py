@@ -225,14 +225,14 @@ try:
 
         #---
         tab6.write(SPECIES[0])
-        # TEXT = f"""
-        # {SPECIES[0]}
+        TEXT = f"""
+        {SPECIES[0]}
         
-        # {wikipedia.summary(SPECIES[0])}
+        {wikipedia.summary(SPECIES[0])}
         
-        # link wiki: {wikipedia.page(SPECIES[0]).url}
-        # """
-        tab6.markdown(f"{wikipedia.summary(SPECIES[0])}",unsafe_allow_html=True)
+        link wiki: {wikipedia.page(SPECIES[0]).url}
+        """
+        tab6.markdown(TEXT,unsafe_allow_html=True)
 
     
     
