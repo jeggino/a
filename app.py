@@ -224,7 +224,7 @@ try:
         )
 
         #---
-        st.write(SPECIES[0])
+        tab6.write(SPECIES[0])
         # TEXT = f"""
         # {SPECIES[0]}
         
