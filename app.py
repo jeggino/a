@@ -224,7 +224,7 @@ try:
         )
         st.write(SPECIES[0])
         TEXT = f"""
-        SPECIES[0]}
+        {SPECIES[0]}
         
         {wikipedia.summary(SPECIES[0])}
         
