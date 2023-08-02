@@ -230,7 +230,7 @@ try:
         tab7.markdown(f"link wiki: {wikipedia.page(SPECIES[0]).url}",unsafe_allow_html=True)
         for images in wikipedia.page(SPECIES[0]).images:
             
-            tab7.image(imagesm,width=300)
+            tab7.image(images,width=300)
 
     
     
