@@ -86,7 +86,7 @@ try:
                                  error_message = 'Please select start and end date')        
 
         data_filter = (df_ebird["date"] >= str(DATE[0])) & (df_ebird["date"] <= str(DATE[1]))
-        df_filter = df_filter[data_filter]
+        df_filter = df_ebird[data_filter]
         
         SPECIES = st.multiselect("Select one o more species", df_filter["comName"].unique(), max_selections=None, placeholder="Choose an option")
         
