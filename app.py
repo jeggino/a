@@ -203,6 +203,7 @@ try:
         data_df = pd.DataFrame(
             {
                 "sales": [200, 550, 1000, 80],
+                "Species": ["A", "B", "C", "D",]
             }
         )
         
