@@ -84,11 +84,15 @@ try:
         DATE = date_range_picker("Select a date range", default_start = date_1, default_end = date_2, 
                                  min_date = date_1, max_date = date_2, 
                                  error_message = 'Please select start and end date')        
-        SPECIES = st.multiselect("Select one o more species", df_ebird["comName"].unique(), max_selections=None, placeholder="Choose an option")
-        
+
         data_filter = (df_ebird["date"] >= str(DATE[0])) & (df_ebird["date"] <= str(DATE[1]))
+        df_filter = df_filter[data_filter]
+        
+        SPECIES = st.multiselect("Select one o more species", df_filter["comName"].unique(), max_selections=None, placeholder="Choose an option")
+        
+        
         species_filter = (df_filter["comName"].isin(SPECIES))
-        df_filter = df_filter[data_filter & species_filter]
+        df_filter = df_filter[species_filter]
 
         
 
