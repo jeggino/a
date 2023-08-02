@@ -111,10 +111,7 @@ try:
         tab1, tab2, tab3, tab4, tab5  = st.tabs(["Chart 1", "Chart 2", "Chart 3", "Chart 4", "Chart 5"])
         import altair as alt
 
-        with st.sidebar:
-            NUMBER = tab1.number_input("Number of species", min_value=1, max_value=50, value=10, step=1,  label_visibility="visible")
-    
-        source = df_filter.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index().loc[:NUMBER]
+        source = df_filter.groupby(["comName"],as_index=False).size().sort_values('size',ascending=False).reset_index()
         
         bar_chart = alt.Chart(source).mark_bar().encode(
             x=alt.X(field='size', title="Number of observations"),
