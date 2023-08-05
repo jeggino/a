@@ -227,15 +227,18 @@ try:
         with tab7:
 
             for species in SPECIES:
-                col1,col2 = st.columns([3,2])
+                try:
+                    col1,col2 = st.columns([3,2])
+        
+                    col1.title(species)
+                    col2.image(wikipedia.page(species).images[0],width=300)
+                
+                    st.markdown(f"{wikipedia.summary(species)}",unsafe_allow_html=True)
+                    st.markdown(f"link wiki: {wikipedia.page(species).url}",unsafe_allow_html=True)
     
-                col1.title(species)
-                col2.image(wikipedia.page(species).images[0],width=300)
-            
-                st.markdown(f"{wikipedia.summary(species)}",unsafe_allow_html=True)
-                st.markdown(f"link wiki: {wikipedia.page(species).url}",unsafe_allow_html=True)
-
-                st.divider()
+                    st.divider()
+                except:
+                    st.warning('No infos for this species', icon="⚠️")
         
 
     
