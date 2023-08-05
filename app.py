@@ -225,7 +225,7 @@ try:
 
         #---
         with tab7:
-            col1,col2 = st.columns([3,1])
+            col1,col2 = st.columns([3,2])
 
             col1.title(SPECIES[0])
             col2.image(wikipedia.page(SPECIES[0]).images[0],width=300)
