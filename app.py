@@ -239,6 +239,7 @@ try:
                     st.divider()
                 except:
                     st.warning('No infos for this species', icon="⚠️")
+                    st.divider()
         
 
     
