@@ -224,13 +224,16 @@ try:
         )
 
         #---
-        tab7.title(SPECIES[0])
-        tab7.divider()
-        tab7.markdown(f"{wikipedia.summary(SPECIES[0])}",unsafe_allow_html=True)
-        tab7.markdown(f"link wiki: {wikipedia.page(SPECIES[0]).url}",unsafe_allow_html=True)
-        for images in wikipedia.page(SPECIES[0]).images:
-            
-            tab7.image(images,width=300)
+        with tab7:
+            col1,col2 = st.columns([3,1])
+
+            col1.title(SPECIES[0])
+            col2.image(wikipedia.page(SPECIES[0]).images[0],width=300)
+        
+            st.divider()
+            st.markdown(f"{wikipedia.summary(SPECIES[0])}",unsafe_allow_html=True)
+            st.markdown(f"link wiki: {wikipedia.page(SPECIES[0]).url}",unsafe_allow_html=True)
+        
 
     
     
