@@ -225,14 +225,17 @@ try:
 
         #---
         with tab7:
-            col1,col2 = st.columns([3,2])
 
-            col1.title(SPECIES[0])
-            col2.image(wikipedia.page(SPECIES[0]).images[0],width=300)
-        
-            st.divider()
-            st.markdown(f"{wikipedia.summary(SPECIES[0])}",unsafe_allow_html=True)
-            st.markdown(f"link wiki: {wikipedia.page(SPECIES[0]).url}",unsafe_allow_html=True)
+            for species in SPECIES:
+                col1,col2 = st.columns([3,2])
+    
+                col1.title(species)
+                col2.image(wikipedia.page(species).images[0],width=300)
+            
+                st.markdown(f"{wikipedia.summary(species)}",unsafe_allow_html=True)
+                st.markdown(f"link wiki: {wikipedia.page(species).url}",unsafe_allow_html=True)
+
+                st.divider()
         
 
     
